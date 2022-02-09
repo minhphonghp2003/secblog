@@ -1,0 +1,145 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  		<title>S3cbl09</title>
+<!-- 
+
+Highway Template
+
+https://templatemo.com/tm-520-highway
+
+-->
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="apple-touch-icon" href="{% static 'css/apple-touch-icon.png'%}">
+
+        <link rel="stylesheet" href="{% static 'welcome/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'welcome/css/bootstrap-theme.min.css' %}">
+        <link rel="stylesheet" href="{% static 'welcome/css/fontAwesome.css' %}">
+        <link rel="stylesheet" href="{% static 'welcome/css/light-box.css' %}">
+        <link rel="stylesheet" href="{% static 'welcome/css/templatemo-style.css' %}">
+
+        <link href="https://fonts.googleapis.com/css?family=Kanit:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+
+        <script src="{% static 'welcome/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js' %}"></script>
+    </head>
+
+<body >
+    <nav>
+        <div class="logo">
+            <a href="{% url 'welcomehome'%}">S3c<em>bl09</em></a>
+        </div>
+        
+      <div class="menu-icon">
+        <span></span>
+      </div>
+    </nav>
+    {% block content %}{% endblock %}
+    <footer>
+        <div class="container-fluid">
+            <div class="col-md-12">
+                <p>Copyright &copy; S3cbl09 
+    
+    | Designed by <a href="https://www.facebook.com/profile.php?id=100068404994823"> Minh Nguyen</a> </p>
+            </div>
+        </div>
+    </footer>
+
+
+      <!-- Modal button -->
+    <div class="popup-icon">
+      <button id="modBtn" class="modal-btn"><img src="{% static 'welcome/img/contact-icon.png'%}" alt=""></button>
+    </div>  
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+      <!-- Modal Content -->
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h3 class="header-title">Say hello to <em>S3cbl09</em></h3>
+          <div class="close-btn"><img src="{% static 'img/close_contact.png'%}" alt=""></div>    
+        </div>
+        <!-- Modal Body -->
+        <div class="modal-body">
+          <div class="col-md-6 col-md-offset-3">
+            <form id="contact" action="" method="post">
+                <div class="row">
+                    <div class="col-md-12">
+                      <fieldset>
+                        <input name="name" type="text" class="form-control" id="name" placeholder="Your name..." required="">
+                      </fieldset>
+                    </div>
+                    <div class="col-md-12">
+                      <fieldset>
+                        <input name="email" type="email" class="form-control" id="email" placeholder="Your email..." required="">
+                      </fieldset>
+                    </div>
+                    <div class="col-md-12">
+                      <fieldset>
+                        <textarea name="message" rows="6" class="form-control" id="message" placeholder="Your message..." required=""></textarea>
+                      </fieldset>
+                    </div>
+                    <div class="col-md-12">
+                      <fieldset>
+                        <button type="submit" id="form-submit" class="btn">Send Message Now</button>
+                      </fieldset>
+                    </div>
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+
+    <section class="overlay-menu">
+      <div class="container">
+        <div class="row">
+          <div class="main-menu">
+              <ul>
+                  <li>
+                      <a href="#">Ctf Writeup - For ctf writter and learner</a>
+                  </li>
+                  <li>
+                      <a href="#">BLog site - For blogger</a>
+                  </li>
+                  <li>
+                      <a href="{%url 'whoami'%}">whoami</a>
+                  </li>
+                  <li>
+                      <a href="{%url 'wel_about'%}">About this website</a>
+                  </li>
+                  {%if user.is_authenticated%}
+                  <li>
+                    <h3>Welcome to my website, {{user.username}}</h3>
+                  </li> 
+                  <li>
+                    <a href="{% url 'logout'%}">Logout</a>
+                  </li>
+                  {%else%}
+                  
+                  <li>
+                    <a href="{% url 'login'%}">Sign in</a>
+                  </li>
+                  {%endif%}
+              </ul>
+              <p>Have a good day!</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!-- <script>window.jQuery || document.write('<script src="{% static js/vendor/jquery-1.11.2.min.js"><\/script>')</script> -->
+
+    <script src="{% static 'welcome/js/vendor/bootstrap.min.js' %}"></script>
+    
+    <script src="{% static 'welcome/js/plugins.js' %}"></script>
+    <script src="{% static 'welcome/js/main.js' %}"></script>
+</body>
+</html>

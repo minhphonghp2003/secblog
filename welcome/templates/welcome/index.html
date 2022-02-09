@@ -1,0 +1,84 @@
+
+{%extends 'welcome/base.html'%}
+{%load static%}
+
+{% block content %}
+    
+
+    <div id="video-container">
+        
+        <div class="video-overlay"></div>
+        <div class="video-content">
+            <div class="inner">
+              <br> <br> <br> <br>
+              <h1>Welcome to <em>our website</em></h1>
+              <h1> <em> want to be a blogger?</em></h1>
+              <h1>enjoy!</h1>
+              <p></p>
+                <div class="scroll-icon">
+                    <a class="scrollTo" data-scrollTo="portfolio" href="#"><img src="{% static 'welcome/img/scroll-icon.png'%}" alt=""></a>
+                </div>    
+            </div>
+        </div>
+        <video autoplay="" loop="" muted>
+        	<source src="../../static/welcome/Black - 13495.mp4" type="video/mp4" />
+        </video>
+        <img style="height: 100%;width: 100%;" src="{%static 'welcome/img/blckimg.jpg'%}" alt="">
+    </div>
+
+
+    <div class="full-screen-portfolio" id="portfolio">
+        <div class="container-fluid">
+            <div class="col-md-4 col-sm-6">
+                <div class="portfolio-item">
+                    <a href="writeup/index.html" ><div class="thumb">
+                        <div class="hover-effect">
+                            <div class="hover-content">
+                                <h1>CTF <em>Writeup</em></h1>
+                                <p>Join our Dedsec community!</p>
+                            </div>
+                        </div>
+                        <div class="image">
+                            <img src="{% static 'welcome/img/ded.png'%}" style="height: 393.5px;">
+                        </div>
+                    </div></a>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="portfolio-item">
+                    <a href="blog.html" ><div class="thumb">
+                        <div class="hover-effect">
+                            <div class="hover-content">
+                                <h1>BLog <em>Site</em></h1>
+                                <p>A greate site for bloggers</p>
+                            </div>
+                        </div>
+                        <div class="image">
+                            <img src="{% static 'welcome/img/blog.jpg'%}" style="height: 393.5px; ">
+                        </div>
+                    </div></a>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="portfolio-item">
+                    <a href="#" ><div class="thumb">
+                        <div class="hover-effect">
+                            <div class="hover-content">
+                                <h1>Images <em> & Wallpapers</em></h1>
+                                <p>Beautiful and insane Images</p>
+                            </div>
+                        </div>
+                        <div class="image">
+                            <img src="{%static 'welcome/img/portfolio_item_3.png'%}" style="height: 393.5px; ">
+                        </div>
+                    </div></a>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+
+   
+
+    {% endblock %}
