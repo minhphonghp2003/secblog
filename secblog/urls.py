@@ -21,4 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('welcome.welcome_url')),
     path('user/',include('user.user_url')),
+    path('dedsec/',include('writeup.writeup_url')),
 ]

@@ -9,7 +9,7 @@
         
         <div class="video-overlay"></div>
         <div class="video-content">
-            <div class="inner">
+            <div style="margin-top: 210px;" class="inner">
               <br> <br> <br> <br>
               <h1>Welcome to <em>our website</em></h1>
               <h1> <em> want to be a blogger?</em></h1>
@@ -23,7 +23,7 @@
         <video autoplay="" loop="" muted>
         	<source src="../../static/welcome/Black - 13495.mp4" type="video/mp4" />
         </video>
-        <img style="height: 100%;width: 100%;" src="{%static 'welcome/img/blckimg.jpg'%}" alt="">
+        <!-- <img style="height: 100%;width: 100%;" src="{%static 'welcome/img/blckimg.jpg'%}" alt=""> -->
     </div>
 
 
@@ -31,7 +31,7 @@
         <div class="container-fluid">
             <div class="col-md-4 col-sm-6">
                 <div class="portfolio-item">
-                    <a href="writeup/index.html" ><div class="thumb">
+                    <a href="{%url 'wuhpage'%}" ><div class="thumb">
                         <div class="hover-effect">
                             <div class="hover-content">
                                 <h1>CTF <em>Writeup</em></h1>

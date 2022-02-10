@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'welcome.apps.WelcomeConfig',
+    'writeup.apps.WriteupConfig',
     'user.apps.UserConfig',
     'jquery',
     'django.contrib.admin',

@@ -1,0 +1,193 @@
+{%extends 'writeup/base.html'%}
+{%load static%}
+
+{% block content %}
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header Section Begin -->
+    <header class="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2">
+                    <div class="header__logo">
+                        <a href="./index.html" style="color: white;"><h2 style="color: white;"><em> D3ds3c</em> </h2></a>
+                    </div>
+                </div>
+                <div class="col-lg-10">
+                    <div class="header__nav__option">
+                        <nav class="header__nav__menu mobile-menu">
+                            <ul>
+                                <li style="color: red;"><a href="{%url 'welcomehome'%}" > <h5 style="color: pink;">Welcome page</h5></a></li>
+                                <li ><a href="{%url 'wuhpage'%}">Home</a></li>
+                                
+                                
+                                <li class="active"><a href="{%url 'writeup'%}">Writeup</a></li>
+                                <li><a href="#">More</a>
+                                    <ul class="dropdown">
+                                        <li><a href="#">Create writeup</a></li>
+                                        {%if user.is_authenticated%}
+                                        
+                                        <li><a href="{%url 'mywu' user.username%}">My writeup</a></li>
+                                        {%endif%}
+                                        <li><a href="#">Blog</a></li>
+                                        <li><a href="#">Blog Details</a></li>
+                                    </ul>
+                                </li>
+
+                                <li><a href="#">About us</a></li>
+                               
+                                
+                                {%if user.is_authenticated%}
+                                <li><a href="#">Hello, {{user.first_name}}</a>
+                                    <ul class="dropdown">
+                                        <li><a href="#">Profile</a></li>
+                                        <li><a href="{% url 'logout'%}">Log out</a></li>
+                                        
+                                    </ul>
+                                </li>
+                                {%else%}
+                                
+                                <li>
+                                    <a href="{% url 'login'%}">Sign in</a>
+                                </li>
+                                {%endif%}
+                                
+                        </nav>
+                        <div class="header__nav__social">
+                            <a href="https://www.facebook.com/profile.php?id=100068404994823"><i class="fa fa-facebook"></i></a>
+                            <a href="https://twitter.com/phong20031"><i class="fa fa-twitter"></i></a>
+                            
+                            <a href="https://www.instagram.com/_minh_nguyn/?hl=en"><i class="fa fa-instagram"></i></a>
+                            <a href="https://zalo.me/0377075126"><i class="fa fa-youtube-play"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="mobile-menu-wrap"></div>
+        </div>
+    </header>
+    <!-- Header End -->
+
+    <!-- Blog Details Hero Begin -->
+    <section class="blog-hero spad set-bg" data-setbg="{%static 'writeup/img/blog/blog-hero.jpg'%}">
+        <div class="container">
+            <div class="row d-flex justify-content-center">
+                <div class="col-lg-8">
+                    <div class="blog__hero__text">
+                        <h2>{{post.title}}</h2>
+                        <ul>
+                            <li>by <span> <a href="{%url 'userwu' post.author%}">{{post.author.first_name}}</a> </span></li>
+                            <li>{{post.date_create|date:"M d, Y"}}</li>
+                            <!-- <li>05 Comment</li> -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Blog Details Hero End -->
+
+    <!-- Blog Details Section Begin -->
+    <div class="blog-details spad">
+        <div class="container">
+            <div class="row d-flex justify-content-center">
+                <div class="col-lg-8">
+                    <div class="blog__details__content">
+                        <div class="blog__details__quote">
+                            
+                                <h3 style="color: white;"> Prerequistic</h3>
+                               
+
+                            <p style="color: white;">    {{post.prerequis}}</p>
+                            
+                            
+                        </div>
+                        <div class="blog__details__text">
+
+                            <p>{{post.content}}</p>
+                            
+                        </div>
+                        
+                        
+                        <div class="blog__details__tags">
+                            <span><i class="fa fa-tag"></i> Tag:</span>
+                            <a href="#">Wedding</a>
+                            <a href="#">Event</a>
+                            <a href="#">Couple</a>
+                        </div>
+                        <div class="blog__details__option">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    <a href="#" class="blog__details__option__item">
+                                        <h5><i class="fa fa-angle-left"></i> Previous posts</h5>
+                                        <div class="blog__details__option__item__img">
+                                            <img src="img/blog/prev.jpg" alt="">
+                                        </div>
+                                        <div class="blog__details__option__item__text">
+                                            <h6>Looking for Music & Sounds for my new Android...</h6>
+                                            <span>Nov 27, 2019</span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    <a href="#" class="blog__details__option__item blog__details__option__item--right">
+                                        <h5>Previous posts <i class="fa fa-angle-right"></i></h5>
+                                        <div class="blog__details__option__item__img">
+                                            <img src="img/blog/next.jpg" alt="">
+                                        </div>
+                                        <div class="blog__details__option__item__text">
+                                            <h6>Looking for Music & Sounds for my new Android...</h6>
+                                            <span>Nov 27, 2019</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="blog__details__recent">
+                            <h4>Recent Posts</h4>
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 col-sm-6">
+                                    <div class="blog__details__recent__item">
+                                        <img src="img/blog/ri-1.jpg" alt="">
+                                        <h5>What are the steps of a body lift procedure?</h5>
+                                        <span>Dec 06, 2019</span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6">
+                                    <div class="blog__details__recent__item">
+                                        <img src="img/blog/ri-2.jpg" alt="">
+                                        <h5>What are the steps of a body lift procedure?</h5>
+                                        <span>Dec 06, 2019</span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6">
+                                    <div class="blog__details__recent__item">
+                                        <img src="img/blog/ri-3.jpg" alt="">
+                                        <h5>How to shop for a cosm surgery procedure</h5>
+                                        <span>Dec 06, 2019</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="blog__details__comment">
+                            <h4>Leave a comment</h4>
+                            <form action="#">
+                                <div class="input__list">
+                                    <input type="text" placeholder="Name">
+                                    <input type="text" placeholder="Email">
+                                    <input type="text" placeholder="Website">
+                                </div>
+                                <textarea placeholder="Comment"></textarea>
+                                <button type="submit" class="site-btn">Send Message</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Blog Details Section End -->
+    {% endblock %}
