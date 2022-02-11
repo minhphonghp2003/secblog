@@ -17,9 +17,11 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from user import views as userview
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('welcome.welcome_url')),
     path('user/',include('user.user_url')),
     path('dedsec/',include('writeup.writeup_url')),
+    path('profile/',userview.profile, name = "profile"),
 ]

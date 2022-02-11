@@ -135,3 +135,6 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'nguyenminhhp2003@gmail.com'
 EMAIL_HOST_PASSWORD = 'minhphonGgoogle82'
+
+MEDIA_ROOT=os.path.join(BASE_DIR,'media')
+MEDIA_URL = '/media/'
