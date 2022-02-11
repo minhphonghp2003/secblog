@@ -22,7 +22,7 @@
 					{%  csrf_token %}
 
 					<span class="login100-form-title">
-						Member Login
+						Member Register
 					</span>
 					{%for f in form%}
 					{{f.label}}
@@ -46,13 +46,13 @@
 						<span class="txt1">
 							Forgot
 						</span>
-						<a class="txt2" href="#">
+						<a class="txt2" href="{%url 'passwdreset'%}">
 							Username / Password?
 						</a>
 					</div>
 					
 
-					<div class="text-center p-t-136">
+					<div class="text-center p-t-80">
 						<a class="txt2" href="{%url 'login'%}">
 							Already have a account? Login
 							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>

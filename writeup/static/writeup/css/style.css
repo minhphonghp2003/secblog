@@ -144,7 +144,7 @@ ol {
 .set-bg {
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: top center;
+  background-position: bottom;
 }
 
 .spad {
@@ -366,7 +366,7 @@ ol {
 .header__nav__menu ul li .dropdown li a {
   font-size: 14px;
   color: #111111;
-  padding: 8px 20px;
+  padding: 9px 19px;
   text-transform: capitalize;
 }
 .header__nav__menu ul li .dropdown li a:after {

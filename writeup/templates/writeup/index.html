@@ -26,21 +26,23 @@
                                 <li class="active"><a href="{%url 'wuhpage'%}">Home</a></li>
                                 
                                 
-                                <li><a href="{%url 'writeup'%}">Writeup</a></li>
-                                <li><a href="#">More</a>
+                                <li><a href="{%url 'writeup'%}">Writeup</a>
                                     <ul class="dropdown">
 
                                         <li><a href="#">Create writeup</a></li>
                                         {%if user.is_authenticated%}
                                         
-                                        <li><a href="{%url 'mywu' user.username%}">My writeup</a></li>
+                                        <li><a href="{%url 'userwu' user.username%}">My writeup</a></li>
                                         {%endif%}
-                                        <li><a href="#">Blog</a></li>
-                                        <li><a href="#">Blog Details</a></li>
+                                        <li><a href="#">Categories</a></li>
+                                        <li><a href="#"> placeholder</a></li>
                                     </ul>
+                                
                                 </li>
+                                
+                                    
 
-                                <li><a href="#">About us</a></li>
+                                <li><a href="{%url 'aboutus'%}">About us</a></li>
                                
                                 
                                 {%if user.is_authenticated%}

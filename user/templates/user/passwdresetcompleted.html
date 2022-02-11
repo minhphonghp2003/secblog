@@ -1,0 +1,40 @@
+{%extends 'user/base.html'%}
+{%load static%}
+
+	{% block content %}
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<div style="margin-left: 215px;" class="login100-pic js-tilt" data-tilt>
+					<img src="{%static 'user/images/img-01.png'%}" alt="IMG">
+				</div>
+				
+				
+					<span class="login100-form-title">
+						Your password has been changed, you can now login with your new password 
+					</span>
+					
+					
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn">
+                            <a style="color: white;" href="{% url 'login'%}">Login</a>
+							
+						</button>
+                        OR
+                        <button class="login100-form-btn">
+                            <a style="color: white;" href="{% url 'welcomehome'%}">Go Home</a>
+							
+						</button>
+					</div>
+					
+
+					
+					
+				
+			</div>
+		</div>
+	</div>
+	
+	
+
+	{% endblock %}

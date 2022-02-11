@@ -24,20 +24,22 @@
                                 <li ><a href="{%url 'wuhpage'%}">Home</a></li>
                                 
                                 
-                                <li class="active"><a href="{%url 'writeup'%}">Writeup</a></li>
-                                <li><a href="#">More</a>
+                                <li class="active"><a href="{%url 'writeup'%}">Writeup</a>
                                     <ul class="dropdown">
+
                                         <li><a href="#">Create writeup</a></li>
                                         {%if user.is_authenticated%}
                                         
-                                        <li><a href="{%url 'mywu' user.username%}">My writeup</a></li>
+                                        <li><a href="{%url 'userwu' user.username%}">My writeup</a></li>
                                         {%endif%}
-                                        <li><a href="#">Blog</a></li>
-                                        <li><a href="#">Blog Details</a></li>
+                                        <li><a href="#">Categories</a></li>
+                                        <li><a href="#"> placeholder</a></li>
                                     </ul>
+                                
                                 </li>
+                                
 
-                                <li><a href="#">About us</a></li>
+                                <li><a href="{%url 'aboutus'%}">About us</a></li>
                                
                                 
                                 {%if user.is_authenticated%}
@@ -99,13 +101,10 @@
                     <a href="{%url 'writeupdetail' p.id%}">
                     <div class="blog__item">
                         <h4>  {{p.title}}</h4>
-                        {%if user == p.author%}
                         
-                        <p> <h6 style="color: white;"> <a href="{%url 'mywu' user%}"> Author:{{p.author.first_name}}</a>  | Date created: {{p.date_create|date:"M d, Y" }}</h6></p>             
-                        {%else%}    
-                    
-                        <p> <h6 style="color: white;"> <a href="{%url 'userwu' p.author%}"> Author:{{p.author.first_name}}</a>  | Date created: {{p.date_create|date:"M d, Y" }}</h6></p>
-                        {%endif%}
+                        
+                        <p> <h6 style="color: white;"> <a href="{%url 'userwu' p.author%}"> Author:{{p.author.first_name}}</a>  | Date created: {{p.date_create|date:"M d, Y" }}</h6></p>             
+                        
                         <br>
                         
                     </div>
