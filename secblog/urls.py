@@ -24,7 +24,7 @@ urlpatterns = [
     path('user/',include('user.user_url')),
     path('dedsec/',include('writeup.writeup_url')),
     path('profile/<str:p>/',userview.profile, name = "profile"),
-    path('profile/myprofile/update/',userview.profileupdate, name = "profileupdate"),
+    path('profile/myprofile/update/',userview.profileupdate, name = "profupdate"),
 ]
 
 if settings.DEBUG:

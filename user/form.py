@@ -15,14 +15,14 @@ class UserUpdate(forms.ModelForm):
     
     class Meta:
         model=User
-        fields=['first_name','last_name','username']
+        fields=['first_name','last_name']
 
 class ProfileUpdate(forms.ModelForm):
     
     class Meta:
         model=Profile
         fields='__all__'
-        exclude = ['user','education','experience','skill']
+        exclude = ['user','about_ins','about_fb','about_zl','background']
 
 class EducationUpdate(forms.ModelForm):
     

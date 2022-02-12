@@ -85,11 +85,10 @@
 			                    <li class="smooth-menu"><a href="#exp">experience</a></li>
 								<li class="smooth-menu"><a href="#work">works</a></li>
 			                    <li class="smooth-menu"><a href="#contact">contact</a></li>
-								{%if user.is_authenticated%}
-								{%if user == profile.user%}
-								<li  class="smooth-menu"><a style="color: blueviolet;" href="#">Update profile</a></li>
-								{%endif%}
-								{%endif%}
+							
+								
+								<a  class="smooth-menu" style="color: blueviolet;" href="{%url 'profupdate'%}">Update profile</a>
+								
 			                </ul><!--/.nav -->
 			            </div><!-- /.navbar-collapse -->
 			        </div><!--/.container-->
@@ -109,7 +108,7 @@
 					<div class="col-md-12 text-center">
 						<div class="header-text">
 
-							<h2>hi<span>,</span> i am <br> {{profile.user.first_name}}  {{profile.user.last_name}} <span></span>   </h2>
+							<h2>hi<span>,</span> i am <br> {{username.first_name}}  {{username.last_name}} <span></span>   </h2>
 							<p>I am a writter at</p>
 							<a href="{%url 'welcomehome'%}">s3cbl09</a>
 						</div><!--/.header-text-->
@@ -160,7 +159,7 @@
 						</div>
 						<div class="col-sm-offset-1 col-sm-5" >
 							<div class="single-about-img">
-								<img src="{{profile.image.url}}" alt="profile_image">
+								<img src="{{user.profile.image.url}}" alt="profile_image">
 								<div class="about-list-icon">
 									<ul>
 										<li>
@@ -201,7 +200,7 @@
 			<div class="container">
 				<div class="education-horizontal-timeline">
 					<div class="row">
-						{%for edu in profile.education.all%}
+						{%for edu in username.edu.all%}
 						{%if edu.user == profile.user%}
 						<div class="col-sm-4">
 							<div class="single-horizontal-timeline">
@@ -250,7 +249,7 @@
 							
 							<div class="col-md-6">
 								<div class="single-skill-content">
-									{%for skill in profile.skill.all%}
+									{%for skill in username.skill.all%}
 									{% if not forloop.counter|divisibleby:2 %}
 									<div class="barWrapper">
 										<span class="progressText">{{skill.skill_title}}</span>
@@ -270,7 +269,7 @@
 							<!-- ------------------------------- -->
 							<div class="col-md-6">
 								<div class="single-skill-content">
-									{%for skill in profile.skill.all%}
+									{%for skill in username.skill.all%}
 									{% if forloop.counter|divisibleby:2 %}
 									<div class="barWrapper">
 										<span class="progressText">{{skill.skill_title}}</span>
@@ -308,7 +307,7 @@
 								
 								
 								
-								{%for exp in profile.exp.all%}
+								{%for exp in username.exp.all%}
 								
 								{% if not forloop.counter|divisibleby:2 %}								
 								<li>

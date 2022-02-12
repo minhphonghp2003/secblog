@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.models import User
 
 from django.contrib import messages
 from .form import *
@@ -29,9 +30,8 @@ def profile(request, p):
    
     context = {
         'profile' : Profile.objects.filter(user=p).first(),
-        # 'education' : Education.objects.filter(user=p),
-        # 'skills' : Skill.objects.filter(user=p),
-        # 'experience' : Experience.objects.filter(user=p),
+        'username' : User.objects.filter(id=p).first(),
+
         
     }
     return render(request,'user/profile.html/',context)
@@ -39,11 +39,12 @@ def profile(request, p):
 
 @login_required
 def profileupdate(request):
-    Profile.objects.get_or_create(user=request.user)
+    profile = get_object_or_404(Profile,user=request.user)
     if request.method == 'POST':
         
         u_form = UserUpdate(request.POST, instance=request.user)
-        p_form = ProfileUpdate( request.POST,request.FILES, instance=request.user.profile)
+        p_form = ProfileUpdate( request.POST,request.FILES, instance=profile)
+        
        
         if u_form.is_valid() and p_form.is_valid():
             u_form.save()
@@ -51,7 +52,7 @@ def profileupdate(request):
             
             profile_id = request.user.id
             messages.success(request,"Your profile has been updated!")
-            return redirect('register')
+            return redirect('profile',p=profile_id)
          
     else:
         u_form = UserUpdate(instance=request.user)

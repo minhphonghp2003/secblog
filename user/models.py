@@ -28,8 +28,8 @@ class Profile(models.Model):
 
         img = Image.open(self.image.path)
         
-        if img.height > 300 or img.width > 300:
-            out_size =(300,300)
+        if img.height > 500 or img.width > 500:
+            out_size =(500,500)
             img.thumbnail(out_size)
             img.save(self.image.path)
         
@@ -38,7 +38,7 @@ class Profile(models.Model):
 
 
 class Education(models.Model):
-    profile = models.ForeignKey(Profile,on_delete=models.CASCADE,null=True,related_name="edu")
+    user = models.ForeignKey(User,on_delete=models.CASCADE,null=True,related_name="edu")
 
     edu_title = models.CharField(max_length=100, null=True)
     edu_year = models.DateField( null=True)
@@ -51,7 +51,7 @@ class Education(models.Model):
     
 
 class Skill(models.Model):
-    profile = models.ForeignKey(Profile,on_delete=models.CASCADE,null=True,related_name="skill")
+    user = models.ForeignKey(User,on_delete=models.CASCADE,null=True,related_name="skill")
 
     skill_title = models.CharField(max_length=100, null=True)
     skill_progress = models.DecimalField(max_digits=3, decimal_places=0, null=True)
@@ -59,7 +59,7 @@ class Skill(models.Model):
         return self.skill_title + "'s skill" 
 
 class Experience(models.Model):
-    profile = models.ForeignKey(Profile,on_delete=models.CASCADE,null=True,related_name="exp")
+    user = models.ForeignKey(User,on_delete=models.CASCADE,null=True,related_name="exp")
 
     exp_title = models.CharField(max_length=100, null=True)
     exp_year  = models.DateField(null=True)
