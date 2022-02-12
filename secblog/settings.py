@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'writeup.apps.WriteupConfig',
     'user.apps.UserConfig',
     'jquery',
+    'mathfilters',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

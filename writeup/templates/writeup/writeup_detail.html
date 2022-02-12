@@ -45,7 +45,7 @@
                                 {%if user.is_authenticated%}
                                 <li><a href="#">Hello, {{user.first_name}}</a>
                                     <ul class="dropdown">
-                                        <li><a href="#">Profile</a></li>
+                                        <li><a href="{%url 'profile' user.id%}">Profile</a></li>
                                         <li><a href="{% url 'logout'%}">Log out</a></li>
                                         
                                     </ul>
@@ -81,7 +81,7 @@
                     <div class="blog__hero__text">
                         <h2>{{post.title}}</h2>
                         <ul>
-                            <li>by <span> <a href="#">{{post.author.first_name}}</a> </span></li>
+                            <li>by <span> <a href="{%url 'profile' post.author.id%}">{{post.author.first_name}}</a> </span></li>
                             <li>{{post.date_create|date:"M d, Y"}}</li>
                             <!-- <li>05 Comment</li> -->
                         </ul>

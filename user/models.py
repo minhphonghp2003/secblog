@@ -11,10 +11,14 @@ class Profile(models.Model):
     about_phone = models.CharField(max_length=12, null=True)
     about_email = models.EmailField(null=True)
     image = models.ImageField(default='default.jpg',upload_to='profile_pics')
+    background = models.ImageField(default='defaultback.jpg',upload_to='profile_pics')
     about_ins = models.CharField(max_length=200, null=True)
     about_fb = models.CharField(max_length=200, null=True)
     about_zl = models.CharField(max_length=200, null=True)
 
+    # education = models.ManyToManyField('Education' ,related_name="profile")
+    # skill = models.ManyToManyField('Skill' ,related_name="profile")
+    # experience = models.ManyToManyField('Experience' ,related_name="profile")
    
     def __str__(self):
         return self.user.username + "'s profile" 
@@ -23,16 +27,18 @@ class Profile(models.Model):
         super().save(*args, **kwargs)
 
         img = Image.open(self.image.path)
-        if img.height > 150 or img.width > 150:
-            out_size =(150,150)
+        
+        if img.height > 300 or img.width > 300:
+            out_size =(300,300)
             img.thumbnail(out_size)
             img.save(self.image.path)
-
+        
+        
 
 
 
 class Education(models.Model):
-    user = models.ForeignKey(User,on_delete=models.CASCADE,null=True)
+    profile = models.ForeignKey(Profile,on_delete=models.CASCADE,null=True,related_name="edu")
 
     edu_title = models.CharField(max_length=100, null=True)
     edu_year = models.DateField( null=True)
@@ -41,23 +47,25 @@ class Education(models.Model):
     edu_content = models.TextField( null=True)
 
     def __str__(self):
-        return self.user.username + "'s education" 
+        return self.edu_title + "'s education" 
     
 
 class Skill(models.Model):
-    user = models.ForeignKey(User,on_delete=models.CASCADE,null=True)
+    profile = models.ForeignKey(Profile,on_delete=models.CASCADE,null=True,related_name="skill")
 
     skill_title = models.CharField(max_length=100, null=True)
     skill_progress = models.DecimalField(max_digits=3, decimal_places=0, null=True)
     def __str__(self):
-        return self.user.username + "'s skill" 
+        return self.skill_title + "'s skill" 
 
 class Experience(models.Model):
-    user = models.ForeignKey(User,on_delete=models.CASCADE,null=True)   
+    profile = models.ForeignKey(Profile,on_delete=models.CASCADE,null=True,related_name="exp")
 
     exp_title = models.CharField(max_length=100, null=True)
     exp_year  = models.DateField(null=True)
     exp_descript = models.TextField(null=True)
     
     def __str__(self):
-        return self.user.username + "'s exps" 
+        return self.exp_title + "'s exps" 
+
+

@@ -23,5 +23,9 @@ urlpatterns = [
     path('',include('welcome.welcome_url')),
     path('user/',include('user.user_url')),
     path('dedsec/',include('writeup.writeup_url')),
-    path('profile/',userview.profile, name = "profile"),
+    path('profile/<str:p>/',userview.profile, name = "profile"),
+    path('profile/myprofile/update/',userview.profileupdate, name = "profileupdate"),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)  

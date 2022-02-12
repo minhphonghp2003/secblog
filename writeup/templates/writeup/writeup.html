@@ -45,7 +45,7 @@
                                 {%if user.is_authenticated%}
                                 <li><a href="#">Hello, {{user.first_name}}</a>
                                     <ul class="dropdown">
-                                        <li><a href="#">Profile</a></li>
+                                        <li><a href="{% url 'profile' user.id %}">Profile</a></li>
                                         <li><a href="{% url 'logout'%}">Log out</a></li>
                                         
                                     </ul>
@@ -103,7 +103,7 @@
                         <h4>  {{p.title}}</h4>
                         
                         
-                        <p> <h6 style="color: white;"> <a href="{%url 'userwu' p.author%}"> Author:{{p.author.first_name}}</a>  | Date created: {{p.date_create|date:"M d, Y" }}</h6></p>             
+                        <p> <h6 style="color: white;"> <a href="{%url 'profile' p.author.id%}"> Author:{{p.author.first_name}}</a>  | Date created: {{p.date_create|date:"M d, Y" }}</h6></p>             
                         
                         <br>
                         

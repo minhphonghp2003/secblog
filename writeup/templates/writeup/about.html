@@ -45,7 +45,7 @@
                                 {%if user.is_authenticated%}
                                 <li><a href="#">Hello, {{user.first_name}}</a>
                                     <ul class="dropdown">
-                                        <li><a href="#">Profile</a></li>
+                                        <li><a href="{% url 'profile'%}">Profile</a></li>
                                         <li><a href="{% url 'logout'%}">Log out</a></li>
                                         
                                     </ul>

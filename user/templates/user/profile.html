@@ -13,7 +13,7 @@
 		<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&amp;subset=devanagari,latin-ext" rel="stylesheet">
         
         <!-- title of site -->
-        <title>Browny</title>
+        <title>{{profile.user.first_name.upper}}'s Profile</title>
 
         <!-- For favicon png -->
 		<link rel="shortcut icon" type="image/icon" href="{%static 'profile/logo/favicon.png'%}"/>
@@ -71,7 +71,7 @@
 			                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
 			                    <i class="fa fa-bars"></i>
 			                </button>
-			                <a class="navbar-brand" href="index.html">{{user}}</a>
+			                <a class="navbar-brand" href="#">{{profile.user}}</a>
 			            </div><!--/.navbar-header-->
 			            <!-- End Header Navigation -->
 
@@ -82,8 +82,14 @@
 							<li class=" smooth-menu"><a href="#about">about</a></li>
 			                    <li class=" smooth-menu"><a href="#education">education</a></li>
 			                    <li class="smooth-menu"><a href="#skills">skills</a></li>
-			                    
+			                    <li class="smooth-menu"><a href="#exp">experience</a></li>
+								<li class="smooth-menu"><a href="#work">works</a></li>
 			                    <li class="smooth-menu"><a href="#contact">contact</a></li>
+								{%if user.is_authenticated%}
+								{%if user == profile.user%}
+								<li  class="smooth-menu"><a style="color: blueviolet;" href="#">Update profile</a></li>
+								{%endif%}
+								{%endif%}
 			                </ul><!--/.nav -->
 			            </div><!-- /.navbar-collapse -->
 			        </div><!--/.container-->
@@ -97,15 +103,15 @@
 		<!-- header End -->
 	
 		<!--welcome-hero start -->
-		<section id="welcome-hero" class="welcome-hero">
+		<section id="welcome-hero" class="welcome-hero" style="background:url({{profile.background.url}})no-repeat;background-size: cover;" >
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12 text-center">
 						<div class="header-text">
 
-							<h2>hi<span>,</span> i am <br> {{user.first_name}}  {{user.last_name}} <span>.</span>   </h2>
-							<p>I'am a blogger at</p>
-							<a href="{%url 'welcomehome'%}">S3cbl09</a>
+							<h2>hi<span>,</span> i am <br> {{profile.user.first_name}}  {{profile.user.last_name}} <span></span>   </h2>
+							<p>I am a writter at</p>
+							<a href="{%url 'welcomehome'%}">s3cbl09</a>
 						</div><!--/.header-text-->
 					</div><!--/.col-->
 				</div><!-- /.row-->
@@ -125,51 +131,51 @@
 						<div class="col-sm-6">
 							<div class="single-about-txt">
 								<h3>
-									{{user.profile.about_title}}
+									{{profile.about_title}}
 								</h3>
 								<p>
-									{{user.profile.about_bio}}
+									{{profile.about_bio}}
 								</p>
 								<div class="row">
 									<div class="col-sm-4">
 										<div class="single-about-add-info">
 											<h3>phone</h3>
-											<p>{{user.profile.about_phone}}</p>
+											<p>{{profile.about_phone}}</p>
 										</div>
 									</div>
 									<div class="col-sm-4">
 										<div class="single-about-add-info">
 											<h3>email</h3>
-											<p>{{user.profile.about_email}}</p>
+											<p>{{profile.about_email}}</p>
 										</div>
 									</div>
 									<div class="col-sm-4">
 										<div class="single-about-add-info">
 											<h3>website</h3>
-											<p>www.{{user.username}}.com</p>
+											<p>www.s3cbl09.com</p>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-						<div class="col-sm-offset-1 col-sm-5">
+						<div class="col-sm-offset-1 col-sm-5" >
 							<div class="single-about-img">
-								<img src="{%static 'profile/images/about/profile_image.jpg'%}" alt="profile_image">
+								<img src="{{profile.image.url}}" alt="profile_image">
 								<div class="about-list-icon">
 									<ul>
 										<li>
-											<a href="{{user.profile.about_fb}}">
+											<a href="{{profile.about_fb}}">
 												<i  class="fa fa-facebook" aria-hidden="true"></i>
 											</a>
 										</li><!-- / li -->
 										
 										<li>
-											<a href="{{user.profile.about_zl}}">
+											<a href="{{profile.about_zl}}">
 												<i  class="fa fa-inbox" aria-hidden="true"></i>
 											</a>
 										</li><!-- / li -->
 										<li>
-											<a href="{{user.profile.about_ins}}">
+											<a href="{{profile.about_ins}}">
 												<i  class="fa fa-instagram" aria-hidden="true"></i>
 											</a>
 										</li><!-- / li -->
@@ -195,8 +201,8 @@
 			<div class="container">
 				<div class="education-horizontal-timeline">
 					<div class="row">
-						{%for edu in education%}
-						{%if edu.user == user%}
+						{%for edu in profile.education.all%}
+						{%if edu.user == profile.user%}
 						<div class="col-sm-4">
 							<div class="single-horizontal-timeline">
 								<div class="experience-time">
@@ -241,12 +247,11 @@
 					</div>
 					<div class="container">
 						<div class="row">
-							{%for skill in skills%}
-							{%if skill.user == user%}
+							
 							<div class="col-md-6">
 								<div class="single-skill-content">
-									{%if skill.id % 2 == 0 %}
-									
+									{%for skill in profile.skill.all%}
+									{% if not forloop.counter|divisibleby:2 %}
 									<div class="barWrapper">
 										<span class="progressText">{{skill.skill_title}}</span>
 										<div class="single-progress-txt">
@@ -259,13 +264,14 @@
 										</div>
 									</div><!-- /.barWrapper -->
 									{%endif%}
+									{%endfor%}
 								</div>
 							</div>
 							<!-- ------------------------------- -->
 							<div class="col-md-6">
 								<div class="single-skill-content">
-									{%if skill.id % 2 != 0 %}
-									
+									{%for skill in profile.skill.all%}
+									{% if forloop.counter|divisibleby:2 %}
 									<div class="barWrapper">
 										<span class="progressText">{{skill.skill_title}}</span>
 										<div class="single-progress-txt">
@@ -278,10 +284,10 @@
 										</div>
 									</div><!-- /.barWrapper -->
 									{%endif%}
+									{%endfor%}
 								</div>
 							</div>
-							{%endif%}
-							{%endfor%}
+							
 						</div><!-- /.row -->
 						
 					</div>	<!-- /.container -->		
@@ -290,41 +296,21 @@
 		</section><!--/.skills-->
 		<!--skills end -->
 		<!--experience start -->
-		<section id="experience" class="experience">
+		<section id="exp" class="experience">
 			<div class="section-heading text-center">
 				<h2>experience</h2>
 			</div>
 			<div class="container">
 				<div class="experience-content">
-						<div class="main-timeline">
+						<div class="main-timeline" style="margin-left: 50px;">
+							
 							<ul>
-								<li>
-									<div class="single-timeline-box fix">
-										<div class="row">
-											<div class="col-md-5">
-												<div class="experience-time text-right">
-													<h2>2018 - Present</h2>
-													<h3>creative director</h3>
-												</div><!--/.experience-time-->
-											</div><!--/.col-->
-											<div class="col-md-offset-1 col-md-5">
-												<div class="timeline">
-													<div class="timeline-content">
-														<h4 class="title">
-															<span><i class="fa fa-circle" aria-hidden="true"></i></span>
-															hoplony tech limited
-														</h4>
-														<h5>newyork, USA</h5>
-														<p class="description">
-															Duis aute irure dolor in reprehenderit in vol patate velit esse cillum dolore eu fugiat nulla pari. Excepteur sint occana inna tecat cupidatat non proident. 
-														</p>
-													</div><!--/.timeline-content-->
-												</div><!--/.timeline-->
-											</div><!--/.col-->
-										</div>
-									</div><!--/.single-timeline-box-->
-								</li>
-
+								
+								
+								
+								{%for exp in profile.exp.all%}
+								
+								{% if not forloop.counter|divisibleby:2 %}								
 								<li>
 									<div class="single-timeline-box fix">
 										<div class="row">
@@ -332,20 +318,20 @@
 												<div class="experience-time">
 													<h2>
 														<span><i class="fa fa-circle" aria-hidden="true"></i></span>
-														2016 - 2018
+														
 													</h2>
-													<h3>associate design director</h3>
+													<h3></h3>
 												</div><!--/.experience-time-->
 											</div><!--/.col-->
 											<div class="col-md-5">
 												<div class="timeline">
 													<div class="timeline-content text-right">
 														<h4 class="title">
-															hoplony tech limited
+															{{exp.exp_title}}
 														</h4>
-														<h5>newyork, USA</h5>
+														
 														<p class="description">
-															Duis aute irure dolor in reprehenderit in vol patate velit esse cillum dolore eu fugiat nulla pari. Excepteur sint occana inna tecat cupidatat non proident. 
+															{{exp.exp_descript}}
 														</p>
 													</div><!--/.timeline-content-->
 												</div><!--/.timeline-->
@@ -354,22 +340,23 @@
 												<div class="experience-time">
 													<h2>
 														<span><i class="fa fa-circle" aria-hidden="true"></i></span>
-														2016 - 2018
+														{{exp.exp_year}}
 													</h2>
-													<h3>associate design director</h3>
+													
 												</div><!--/.experience-time-->
 											</div><!--/.col-->
 										</div>
 									</div><!--/.single-timeline-box-->
 								</li>
-
+								{%endif%}
+								{% if forloop.counter|divisibleby:2 %}
 								<li>
 									<div class="single-timeline-box fix">
 										<div class="row">
 											<div class="col-md-5">
 												<div class="experience-time text-right">
-													<h2>2013 - 2016</h2>
-													<h3>senior UI/UX designer</h3>
+													<h2>{{exp.exp_year}}</h2>
+													
 												</div><!--/.experience-time-->
 											</div><!--/.col-->
 											<div class="col-md-offset-1 col-md-5">
@@ -377,11 +364,11 @@
 													<div class="timeline-content">
 														<h4 class="title">
 															<span><i class="fa fa-circle" aria-hidden="true"></i></span>
-															hoplony tech limited
+															{{exp.exp_title}}
 														</h4>
-														<h5>newyork, USA</h5>
+														
 														<p class="description">
-															Duis aute irure dolor in reprehenderit in vol patate velit esse cillum dolore eu fugiat nulla pari. Excepteur sint occana inna tecat cupidatat non proident. 
+															{{exp.exp_descript}}
 														</p>
 													</div><!--/.timeline-content-->
 												</div><!--/.timeline-->
@@ -389,73 +376,10 @@
 										</div>
 									</div><!--/.single-timeline-box-->
 								</li>
-
-								<li>
-									<div class="single-timeline-box fix">
-										<div class="row">
-											<div class="col-md-offset-1 col-md-5 experience-time-responsive">
-												<div class="experience-time">
-													<h2>
-														<span><i class="fa fa-circle" aria-hidden="true"></i></span>
-														2012 - 2013
-													</h2>
-													<h3>UI/UX designer</h3>
-												</div><!--/.experience-time-->
-											</div><!--/.col-->
-											<div class="col-md-5">
-												<div class="timeline">
-													<div class="timeline-content text-right">
-														<h4 class="title">
-															hoplony tech limited
-														</h4>
-														<h5>newyork, USA</h5>
-														<p class="description">
-															Duis aute irure dolor in reprehenderit in vol patate velit esse cillum dolore eu fugiat nulla pari. Excepteur sint occana inna tecat cupidatat non proident. 
-														</p>
-													</div><!--/.timeline-content-->
-												</div><!--/.timeline-->
-											</div><!--/.col-->
-											<div class="col-md-offset-1 col-md-5 experience-time-main">
-												<div class="experience-time">
-													<h2>
-														<span><i class="fa fa-circle" aria-hidden="true"></i></span>
-														2012 - 2013
-													</h2>
-													<h3>UI/UX designer</h3>
-												</div><!--/.experience-time-->
-											</div><!--/.col-->
-										</div>
-									</div><!--/.single-timeline-box-->
-								</li>
-
-								<li>
-									<div class="single-timeline-box fix">
-										<div class="row">
-											<div class="col-md-5">
-												<div class="experience-time text-right">
-													<h2>2010 - 2012</h2>
-													<h3>frontend developer</h3>
-												</div><!--/.experience-time-->
-											</div><!--/.col-->
-											<div class="col-md-offset-1 col-md-5">
-												<div class="timeline">
-													<div class="timeline-content">
-														<h4 class="title">
-															<span><i class="fa fa-circle" aria-hidden="true"></i></span>
-															hoplony tech limited
-														</h4>
-														<h5>newyork, USA</h5>
-														<p class="description">
-															Duis aute irure dolor in reprehenderit in vol patate velit esse cillum dolore eu fugiat nulla pari. Excepteur sint occana inna tecat cupidatat non proident. 
-														</p>
-													</div><!--/.timeline-content-->
-												</div><!--/.timeline-->
-											</div><!--/.col-->
-										</div>
-									</div><!--/.single-timeline-box-->
-								</li>
-
+								{%endif%}
+								{%endfor%}
 							</ul>
+							
 						</div><!--.main-timeline-->
 					</div><!--.experience-content-->
 			</div>
@@ -464,24 +388,26 @@
 		<!--experience end -->
 		
 		<!--my work start -->
-		<section id="portfolio" class="portfolio">
+		<section id="work" class="portfolio">
 			<div class="portfolio-details">
 				<div class="section-heading text-center">
-					<h2>my work</h2>
+					<h2>my works</h2>
 				</div>
-				<div class="container">
+				<div class="container" >
 					<div class="portfolio-content">
 						<div class="isotope">
 							<div class="row">
 
 								<div class="col-sm-4">
 									<div class="item">
+										<a style="color: white;" href="{%url 'userwu' profile.user %}">
 										<img src="{%static 'profile/images/portfolio/p1.jpg'%}" alt="portfolio image"/>
 										<div class="isotope-overlay">
-											<a href="#">
-												ui/ux design
-											</a>
+											
+												Ctf writeup
+											
 										</div><!-- /.isotope-overlay -->
+										</a>
 									</div><!-- /.item -->
 									
 								</div><!-- /.col -->
@@ -491,14 +417,30 @@
 								<div class="col-sm-4">
 									
 									<div class="item">
+										<a style="color: white;" href="#">
 										<img src="{%static 'profile/images/portfolio/p5.jpg'%}" alt="portfolio image"/>
 										<div class="isotope-overlay">
-											<a href="#">
-												web development
-											</a>
+											
+												Blog
+											
 										</div><!-- /.isotope-overlay -->
+										</a>
 									</div><!-- /.item -->
 								</div><!-- /.col -->
+								<div class="col-sm-4">
+									<div class="item">
+										<a style="color: white;" href="#">
+										<img src="{%static 'profile/images/portfolio/p1.jpg'%}" alt="portfolio image"/>
+										<div class="isotope-overlay">
+											
+												comming soon....
+											
+										</div><!-- /.isotope-overlay -->
+										</a>	
+									</div><!-- /.item -->
+									
+								</div><!-- /.col -->
+
 							</div><!-- /.row -->
 						</div><!--/.isotope-->
 					</div><!--/.gallery-content-->
@@ -562,31 +504,42 @@
 							<div class="single-contact-box">
 								<div class="contact-adress">
 									<div class="contact-add-head">
-										<h3>browny star</h3>
-										<p>uI/uX designer</p>
+										<h3>{{profile.user}}</h3>
+										<p>{{profile.about_title}}</p>
 									</div>
 									<div class="contact-add-info">
 										<div class="single-contact-add-info">
 											<h3>phone</h3>
-											<p>987-123-6547</p>
+											<p>{{profile.about_phone}}</p>
 										</div>
 										<div class="single-contact-add-info">
 											<h3>email</h3>
-											<p>browny@info.com</p>
+											<p>{{profile.about_email}}</p>
 										</div>
 										<div class="single-contact-add-info">
 											<h3>website</h3>
-											<p>www.brownsine.com</p>
+											<p>www.s3cbl09.com</p>
 										</div>
 									</div>
 								</div><!--/.contact-adress-->
 								<div class="hm-foot-icon">
 									<ul>
-										<li><a href="#"><i class="fa fa-facebook"></i></a></li><!--/li-->
-										<li><a href="#"><i class="fa fa-dribbble"></i></a></li><!--/li-->
-										<li><a href="#"><i class="fa fa-twitter"></i></a></li><!--/li-->
-										<li><a href="#"><i class="fa fa-linkedin"></i></a></li><!--/li-->
-										<li><a href="#"><i class="fa fa-instagram"></i></a></li><!--/li-->
+										<li>
+											<a href="{{profile.about_fb}}">
+												<i  class="fa fa-facebook" aria-hidden="true"></i>
+											</a>
+										</li><!-- / li -->
+										
+										<li>
+											<a href="{{profile.about_zl}}">
+												<i  class="fa fa-inbox" aria-hidden="true"></i>
+											</a>
+										</li><!-- / li -->
+										<li>
+											<a href="{{profile.about_ins}}">
+												<i  class="fa fa-instagram" aria-hidden="true"></i>
+											</a>
+										</li><!-- / li -->
 									</ul><!--/ul-->
 								</div><!--/.hm-foot-icon-->
 							</div><!--/.single-contact-box-->
@@ -603,7 +556,7 @@
 			<div class="container">
 				<div class="hm-footer-copyright text-center">
 					<p>
-						&copy; copyright yourname. design and developed by <a href="https://www.themesine.com/">themesine</a>
+						&copy; copyright <a href="{{profile.about_fb}}">{{profile.user.first_name}}</a> . design and developed by <a href="{%url 'welcomehome'%}">s3cbl09</a>
 					</p><!--/p-->
 				</div><!--/.text-center-->
 			</div><!--/.container-->
