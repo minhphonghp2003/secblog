@@ -13,7 +13,7 @@
 		<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&amp;subset=devanagari,latin-ext" rel="stylesheet">
         
         <!-- title of site -->
-        <title>{{profile.user.first_name.upper}}'s Profile</title>
+        <title>{{username.first_name.upper}}'s Profile</title>
 
         <!-- For favicon png -->
 		<link rel="shortcut icon" type="image/icon" href="{%static 'profile/logo/favicon.png'%}"/>
@@ -87,7 +87,6 @@
 			                    <li class="smooth-menu"><a href="#contact">contact</a></li>
 							
 								
-								<a  class="smooth-menu" style="color: blueviolet;" href="{%url 'profupdate'%}">Update profile</a>
 								
 			                </ul><!--/.nav -->
 			            </div><!-- /.navbar-collapse -->
@@ -108,9 +107,16 @@
 					<div class="col-md-12 text-center">
 						<div class="header-text">
 
-							<h2>hi<span>,</span> i am <br> {{username.first_name}}  {{username.last_name}} <span></span>   </h2>
-							<p>I am a writter at</p>
-							<a href="{%url 'welcomehome'%}">s3cbl09</a>
+							<h2>hi<span>,</span> i am <br> {{username.first_name}}  {{username.last_name}} <span> <br>
+								{%if messages%}
+								{%for m in messages%}
+									{{m}}
+								{%endfor%}
+								{%endif%}</span>   </h2>
+							<p>I am a writter at s3cbl09</p>
+							{%if user == username%}
+							<a  class="smooth-menu" style="color: white;" href="{%url 'profupdate'%}">Update profile</a>
+							{%endif%}
 						</div><!--/.header-text-->
 					</div><!--/.col-->
 				</div><!-- /.row-->
@@ -122,6 +128,7 @@
 		<!--about start -->
 		<section id="about" class="about">
 			<div class="section-heading text-center">
+					
 				<h2>about me</h2>
 			</div>
 			<div class="container">
@@ -140,26 +147,24 @@
 										<div class="single-about-add-info">
 											<h3>phone</h3>
 											<p>{{profile.about_phone}}</p>
+											<h3>website</h3>
+											<p>www.s3cbl09.com</p>
 										</div>
 									</div>
 									<div class="col-sm-4">
 										<div class="single-about-add-info">
 											<h3>email</h3>
 											<p>{{profile.about_email}}</p>
+											
 										</div>
 									</div>
-									<div class="col-sm-4">
-										<div class="single-about-add-info">
-											<h3>website</h3>
-											<p>www.s3cbl09.com</p>
-										</div>
-									</div>
+									
 								</div>
 							</div>
 						</div>
 						<div class="col-sm-offset-1 col-sm-5" >
 							<div class="single-about-img">
-								<img src="{{user.profile.image.url}}" alt="profile_image">
+								<img src="{{username.profile.image.url}}" alt="profile_image">
 								<div class="about-list-icon">
 									<ul>
 										<li>
@@ -399,7 +404,7 @@
 
 								<div class="col-sm-4">
 									<div class="item">
-										<a style="color: white;" href="{%url 'userwu' profile.user %}">
+										<a style="color: white;" href="{%url 'userwu' username %}">
 										<img src="{%static 'profile/images/portfolio/p1.jpg'%}" alt="portfolio image"/>
 										<div class="isotope-overlay">
 											

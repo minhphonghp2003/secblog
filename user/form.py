@@ -22,7 +22,7 @@ class ProfileUpdate(forms.ModelForm):
     class Meta:
         model=Profile
         fields='__all__'
-        exclude = ['user','about_ins','about_fb','about_zl','background']
+        exclude = ['user']
 
 class EducationUpdate(forms.ModelForm):
     
