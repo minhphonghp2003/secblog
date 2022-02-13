@@ -1,0 +1,42 @@
+{%extends 'user/base.html'%}
+{%load static%}
+
+	{% block content %}
+	
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<div style="margin-left: 215px;" class="login100-pic js-tilt" data-tilt>
+					<img src="{%static 'user/images/img-01.png'%}" alt="IMG">
+				</div>
+				
+				
+					<span class="login100-form-title">
+						You want to delete {{object.edu_title}}?
+					</span>
+					
+					
+					<div class="container-login100-form-btn">
+						<form method="POST"  enctype="multipart/form-data">
+					{%  csrf_token %}
+						<button  class="login100-form-btn ">
+                            Sure
+						</button>
+                       
+                            <!-- <a class="login100-form-btn " style="color: white;" href="{% url 'profupdate'%}">No</a> -->
+							
+						
+					</form>	
+					<br>
+					
+                        
+					</div>
+					
+			</div>
+		</div>
+	</div>
+	
+
+	
+
+	{% endblock %}

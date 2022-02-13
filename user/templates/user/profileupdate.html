@@ -259,7 +259,7 @@
 								<div class="timeline">
 									<div class="timeline-content">
 										
-										[<a href="{%url 'eduupdate' edu.id%}"><h1> edit</h1></a>]
+										[<a href="{%url 'eduupdate' edu.id%}"><h1> edit</h1></a>] / [<a href="{%url 'edudelete' edu.pk%}"><h1> delete</h1></a>]
 										
 									</div><!--/.timeline-content-->
 								</div><!--/.timeline-->
@@ -295,7 +295,7 @@
 									{%for skill in user.skill.all%}
 									{% if not forloop.counter|divisibleby:2 %}
 									<div class="barWrapper">
-										<span class="progressText">{{skill.skill_title}} </span>[<a href="{%url 'skillupdate' skill.pk%}"><h1> edit</h1></a>]
+										<span class="progressText">{{skill.skill_title}} </span>[<a href="{%url 'skillupdate' skill.pk%}"><h1> edit</h1></a>]  / [<a href="{%url 'skilldelete' skill.pk%}"><h1> delete</h1></a>]
 										<div class="single-progress-txt">
 											<div class="progress ">
 												<div class="progress-bar" role="progressbar" aria-valuenow="{{skill.skill_progress}}" aria-valuemin="10" aria-valuemax="100" style="">
@@ -315,7 +315,7 @@
 									{%for skill in user.skill.all%}
 									{% if forloop.counter|divisibleby:2 %}
 									<div class="barWrapper">
-										<span class="progressText">{{skill.skill_title}} </span> [<a href="{%url 'skillupdate' skill.pk%}"><h1> edit</h1></a>]
+										<span class="progressText">{{skill.skill_title}} </span> [<a href="{%url 'skillupdate' skill.pk%}"><h1> edit</h1></a>] / [<a href="{%url 'skilldelete' skill.pk%}"><h1> delete</h1></a>]
 										<div class="single-progress-txt">
 											<div class="progress ">
 												<div class="progress-bar" role="progressbar" aria-valuenow="{{skill.skill_progress}}" aria-valuemin="10" aria-valuemax="100" style="">
@@ -383,7 +383,7 @@
 												<div class="experience-time">
 													<h2>
 														<span><i class="fa fa-circle" aria-hidden="true"></i></span>
-														[<a href="{%url 'expupdate' exp.id%}"><h1> edit</h1></a>]
+														[<a href="{%url 'expupdate' exp.id%}"><h1> edit</h1></a>] / [<a href="{%url 'expdelete' exp.pk%}"><h1> delete</h1></a>]
 													</h2>
 													
 												</div><!--/.experience-time-->
@@ -398,7 +398,7 @@
 										<div class="row">
 											<div class="col-md-5">
 												<div class="experience-time text-right">
-													<h2>[<a href="{%url 'expupdate' exp.id%}"><h1> edit</h1></a>]</h2>
+													<h2>[<a href="{%url 'expupdate' exp.id%}"><h1> edit</h1></a>]   /  [<a href="{%url 'expdelete' exp.pk%}"><h1> delete</h1></a>]</h2>
 													
 												</div><!--/.experience-time-->
 											</div><!--/.col-->

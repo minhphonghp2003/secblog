@@ -23,23 +23,23 @@
                                 <li style="color: red;"><a href="{%url 'welcomehome'%}" > <h5 style="color: pink;">Welcome page</h5></a></li>
                                 <li ><a href="{%url 'wuhpage'%}">Home</a></li>
                                 
-                                
+                                <li ><a href="#">Roadmap</a></li> 
                                 <li><a href="{%url 'writeup'%}">Writeup</a>
                                     <ul class="dropdown">
 
-                                        <li><a href="#">Create writeup</a></li>
+                                        <li><a href="{%url 'writeupcreate'%}">Create writeup</a></li>
                                         {%if user.is_authenticated%}
                                         
                                         <li><a href="{%url 'userwu' user.username%}">My writeup</a></li>
                                         {%endif%}
                                         <li><a href="#">Categories</a></li>
-                                        <li><a href="#"> placeholder</a></li>
+                                        <!-- <li><a href="#"> placeholder</a></li> -->
                                     </ul>
                                 
                                 </li>
                                 
 
-                                <li><a href="{%url 'aboutus'%}">About us</a></li>
+                                
                                
                                 
                                 {%if user.is_authenticated%}
@@ -79,10 +79,21 @@
             <div class="row d-flex justify-content-center">
                 <div class="col-lg-8">
                     <div class="blog__hero__text">
+                        
                         <h2>{{post.title}}</h2>
+                        {%if user == post.author%}
+                        <h4 style="color: white;"><a href="{%url 'writeupdelete' post.pk%}"> Delete</a> | <a href="{%url 'writeupupdate' post.pk%}">Update</a></h4>
+                        {%endif%}
                         <ul>
-                            <li>by <span> <a href="{%url 'profile' post.author.id%}">{{post.author.first_name}}</a> </span></li>
+                             <li><h3 style="color: white;"> by<span> <a  href="{%url 'profile' post.author.id%}">{{post.author.first_name}}</a> </span></h3></li>
                             <li>{{post.date_create|date:"M d, Y"}}</li>
+                            <h3 style="color: blueviolet;">
+                                {%if messages%}
+                                {%for m in messages%}
+                                    {{m}}
+                                {%endfor%}
+                                {%endif%}
+                            </h3>
                             <!-- <li>05 Comment</li> -->
                         </ul>
                     </div>

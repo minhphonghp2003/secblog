@@ -24,25 +24,22 @@
                             <ul>
                                 <li style="color: red;"><a href="{%url 'welcomehome'%}" > <h5 style="color: pink;">Welcome page</h5></a></li>
                                 <li class="active"><a href="{%url 'wuhpage'%}">Home</a></li>
-                                
+                                 <li ><a href="#">Roadmap</a></li>
                                 
                                 <li><a href="{%url 'writeup'%}">Writeup</a>
                                     <ul class="dropdown">
 
-                                        <li><a href="#">Create writeup</a></li>
+                                        <li><a href="{%url 'writeupcreate'%}">Create writeup</a></li>
                                         {%if user.is_authenticated%}
                                         
                                         <li><a href="{%url 'userwu' user.username%}">My writeup</a></li>
                                         {%endif%}
                                         <li><a href="#">Categories</a></li>
-                                        <li><a href="#"> placeholder</a></li>
+                                        <!-- <li><a href="#"> placeholder</a></li> -->
                                     </ul>
                                 
                                 </li>
-                                
-                                    
-
-                                <li><a href="{%url 'aboutus'%}">About us</a></li>
+                         
                                
                                 
                                 {%if user.is_authenticated%}

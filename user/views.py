@@ -133,7 +133,45 @@ class ExpCreate(LoginRequiredMixin,SuccessMessageMixin,CreateView):
         form.instance.user = self.request.user
         
         return super().form_valid(form)
-  
+
+class Edudel(UserPassesTestMixin,SuccessMessageMixin,LoginRequiredMixin,DeleteView):
+    model = Education
+    success_url = '/profile/myprofile/update'
+    template_name ='user/edudel.html'
+    success_message= "Your education information has been deleted"
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.user:
+            return True
+        else:
+            return False
+    
+
+class Skilldel(UserPassesTestMixin,SuccessMessageMixin,LoginRequiredMixin,DeleteView):
+    model = Skill
+    success_url = '/profile/myprofile/update'
+    template_name ='user/skilldel.html'
+    success_message= "Your skill information has been delete"
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.user:
+            return True
+        else:
+            return False
+
+
+class Expdel(UserPassesTestMixin,SuccessMessageMixin,LoginRequiredMixin,DeleteView):
+    model = Experience
+    success_url = '/profile/myprofile/update'
+    template_name ='user/expdel.html'
+    success_message= "Your experience information has been delete"
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.user:
+            return True
+        else:
+            return False
+
 @login_required
 def profileupdate(request):
     profile = get_object_or_404(Profile,user=request.user)

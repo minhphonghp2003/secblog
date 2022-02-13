@@ -1,6 +1,7 @@
 from django.shortcuts import render,get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-
+from django.contrib.messages.views import SuccessMessageMixin
+from .form import *
 from user.models import Profile
 from .models import Writeup
 from django.contrib.auth.models import User
@@ -35,3 +36,47 @@ class UserWriteuplist(ListView):
 class WriteupDetail(DeleteView):
     model = Writeup
     context_object_name = 'post'
+
+class WriteupCreate(LoginRequiredMixin,SuccessMessageMixin,CreateView):
+    model = Writeup
+    form_class= Writeupform
+    template_name = 'writeup/writeup_create.html'
+    success_message= "Writeup created"
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        
+        return super().form_valid(form)
+
+
+class WriteupDelete(LoginRequiredMixin,SuccessMessageMixin,UserPassesTestMixin,DeleteView):
+    model = Writeup
+    success_url = '/dedsec/writeup'
+    template_name ='writeup/writeup_delete.html'
+    success_message= "Writeup deleted"
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.author:
+            return True
+        else:
+            return False
+
+
+
+class WriteupUpdate(UserPassesTestMixin,LoginRequiredMixin,SuccessMessageMixin,UpdateView):
+    
+    model = Writeup
+    template_name = 'writeup/writeup_create.html'
+    success_message= "Writeup updated"
+    form_class = Writeupform
+    
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+    
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.author:
+            return True
+        else:
+            return False

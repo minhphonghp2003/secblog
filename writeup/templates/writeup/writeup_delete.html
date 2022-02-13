@@ -27,7 +27,7 @@
                                 <li><a href="{%url 'writeup'%}">Writeup</a>
                                     <ul class="dropdown">
 
-                                        <li><a href="{%url 'writeupcreate'%}">Create writeup</a></li>
+                                        <li><a href="#">Create writeup</a></li>
                                         {%if user.is_authenticated%}
                                         
                                         <li><a href="{%url 'userwu' user.username%}">My writeup</a></li>
@@ -72,84 +72,38 @@
         </div>
     </header>
     <!-- Header End -->
-
-    <!-- Breadcrumb Begin -->
-    <div class="breadcrumb-option spad set-bg" data-setbg="{% static 'writeup/img/breadcrumb-bg.jpg'%}">
+ <form method="POST" enctype="multipart/form-data">
+        {%  csrf_token %}
+    <!-- Blog Details Hero Begin -->
+    <section class="blog-hero spad set-bg" data-setbg="{%static 'writeup/img/blog/blog-hero.jpg'%}">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <div class="breadcrumb__text">
-                        {%if user == post.first.author or post.count == 0 %}
-                        <h2>My writeup</h2>
-                        {%else%}
-                        <h2>{{post.first.author.first_name}}'s Writeup</h2>
-                        {%endif%}
-                        
-                        <div class="breadcrumb__links">
-                            <a href="{%url 'wuhpage'%}">Home</a>
-                            <span><a href="{%url 'writeup'%}">Writeup</a> </span> <span> {{post.first.author}}</span>
-                        </div>
+            <div class="row d-flex justify-content-center">
+                <div class="col-lg-8">
+                    <div class="blog__hero__text">
+                        <h2>Are you sure want to delete {{object.title}} ?</h2>
+                        <ul>
+                            <li><h3 style="color: white;">by <span> <a href="{%url 'profile' user.id%}">{{user.first_name}}</a> </span></h3> </li>
+                            <!-- <li>{{post.date_create|date:"M d, Y"}}</li> -->
+                            <!-- <li>05 Comment</li> -->
+                        </ul>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    <!-- Breadcrumb End -->
-
-    <!-- Blog Section Begin -->
-    <section class="blog spad">
-        <div class="container">
-            <div class="row">
-                {%for p in post%}
-                
-                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <a href="{%url 'writeupdetail' p.id%}">
-                    <div class="blog__item">
-                          <h4>{{p.title}}</h4>
-                        
-                        
-                         <p> <h6 style="color: white;"> <a href="{%url 'profile' p.author.id%}"> Author:{{p.author.first_name}}</a>  | Date: {{p.date_create|date:"M d, Y" }}</h6></p>
-                        <br>
-                       
-                    </div>
-                    </a>
-                </div>
-                {%endfor%}
                 
             </div>
-
-            {%if is_paginated%}
-                
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="pagination__option blog__pagi">
-                            {%if page_obj.has_previous%}
-                            <a href="?page={{page_obj.previous_page_number}}" class="arrow__pagination left__arrow"><span class="arrow_left"></span> Prev</a>
-                            {%endif%}
-                            {%for p in page_obj.paginator.page_range%}
-                            {%if p == page_obj.number%}
-                            <a href="?page={{p}}" class="number__pagination " style="background-color: blueviolet;">{{p}}</a>
-                            {%else%}
-                            <a href="?page={{p}}" class="number__pagination">{{p}}</a>
-                            {%endif%}
-                            
-                            {%endfor%}
-                            
-                            
-                            {%if page_obj.has_next%}
-                            <a href="?page={{page_obj.next_page_number}}" class="arrow__pagination right__arrow">Next <span class="arrow_right"></span></a>
-                            <a href="?page={{page_obj.paginator.num_pages }}" class="arrow__pagination right__arrow">Last <span class="arrow_right"></span></a>
-
-                            {%endif%}
+                    <button class="animated fadeInDown">
+                        <div class="section-heading text-center">
+                            <!-- <h5 style="color: red;">avatar image scale should be 1:1</h5> <br> -->
+                            <h2>Yes</h2>
                             
                         </div>
-                    </div>
-                </div>
-
-            {%endif%}
-            
+                    </button>
         </div>
     </section>
-    <!-- Blog Section End -->
+    <!-- Blog Details Hero End -->
 
-{% endblock %}
+    <!-- Blog Details Section Begin -->
+                    
+                
+    </form>
+    <!-- Blog Details Section End -->
+    {% endblock %}

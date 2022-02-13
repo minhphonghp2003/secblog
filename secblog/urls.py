@@ -24,14 +24,21 @@ urlpatterns = [
     path('',include('welcome.welcome_url')),
     path('user/',include('user.user_url')),
     path('dedsec/',include('writeup.writeup_url')),
+
     path('profile/<str:p>/',userview.profile, name = "profile"),
     path('profile/myprofile/update/',userview.profileupdate, name = "profupdate"),
+
     path('profile/myedu/<str:pk>/',Eduupdate.as_view(), name = "eduupdate"),
     path('profile/myskill/<str:pk>/',Skillupdate.as_view(), name = "skillupdate"),
     path('profile/myexp/<str:pk>/',Expupdate.as_view(), name = "expupdate"),
+
     path('profile/newedu', EduCreate.as_view(), name="educreate"),
     path('profile/newskill', SkillCreate.as_view(), name="skillcreate"),
     path('profile/newexp', ExpCreate.as_view(), name="expcreate"),
+
+    path('profile/deledu/<str:pk>/',Edudel.as_view(), name = "edudelete"),
+    path('profile/delskill/<str:pk>/',Skilldel.as_view(), name = "skilldelete"),
+    path('profile/delexp/<str:pk>/',Expdel.as_view(), name = "expdelete"),
 ]
 
 

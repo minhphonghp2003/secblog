@@ -8,13 +8,13 @@ class Profile(models.Model):
 
     about_title = models.CharField(max_length=100)
     about_bio = models.TextField()
-    about_phone = models.CharField(max_length=12, null=True)
-    about_email = models.EmailField(null=True)
+    about_phone = models.CharField(max_length=12, null=True,blank=True)
+    about_email = models.EmailField(null=True,blank=True)
     image = models.ImageField(default='default.jpg',upload_to='profile_pics')
     background = models.ImageField(default='defaultback.jpg',upload_to='profile_pics')
-    about_ins = models.CharField(max_length=200, null=True)
-    about_fb = models.CharField(max_length=200, null=True)
-    about_zl = models.CharField(max_length=200, null=True)
+    about_ins = models.CharField(max_length=200, null=True, blank=True)
+    about_fb = models.CharField(max_length=200, null=True, blank=True)
+    about_zl = models.CharField(max_length=200, null=True, blank=True)
 
     # education = models.ManyToManyField('Education' ,related_name="profile")
     # skill = models.ManyToManyField('Skill' ,related_name="profile")
