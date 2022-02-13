@@ -33,7 +33,7 @@ class UserWriteuplist(ListView):
     
     
 
-class WriteupDetail(DeleteView):
+class WriteupDetail(DetailView):
     model = Writeup
     context_object_name = 'post'
 
@@ -80,3 +80,16 @@ class WriteupUpdate(UserPassesTestMixin,LoginRequiredMixin,SuccessMessageMixin,U
             return True
         else:
             return False
+
+class CateList(ListView):
+    model = Cate
+    template_name = 'cate/cate.html'
+    context_object_name = 'cates'
+
+class CateDetail(ListView):
+    model = Writeup
+    template_name = 'cate/catedetail.html'
+    context_object_name = 'posts'
+    def get_queryset(self) :
+        t = get_object_or_404(Cate,tag=self.kwargs.get('tag'))
+        return Writeup.objects.filter(cate=t).order_by('-date_create')

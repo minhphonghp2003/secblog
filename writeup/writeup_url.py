@@ -12,5 +12,8 @@ urlpatterns = [
     path('writeupcreate/', WriteupCreate.as_view(), name="writeupcreate"),
     path('writeup/<int:pk>/delete', WriteupDelete.as_view(), name="writeupdelete"),
     path('writeup/<int:pk>/update', WriteupUpdate.as_view(), name="writeupupdate"),
-    path('about/', views.about, name="aboutus"),
+    
+    path('category/',CateList.as_view(),name = 'cate'),
+    path('category/<str:tag>/', CateDetail.as_view(), name = 'catedetail')
+
 ]

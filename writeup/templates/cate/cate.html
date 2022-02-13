@@ -24,28 +24,28 @@
                                 <li ><a href="{%url 'wuhpage'%}">Home</a></li>
                                 
                                 <li ><a href="#">Roadmap</a></li> 
-                                <li><a href="{%url 'writeup'%}">Writeup</a>
+                                <li class="active"><a href="{%url 'writeup'%}">Writeup</a>
                                     <ul class="dropdown">
 
-                                        <li><a href="#">Create writeup</a></li>
+                                        <li><a href="{%url 'writeupcreate'%}">Create writeup</a></li>
                                         {%if user.is_authenticated%}
                                         
                                         <li><a href="{%url 'userwu' user.username%}">My writeup</a></li>
                                         {%endif%}
-                                        <li><a href="{%url 'cate'%}">Categories</a></li>
+                                        <li><a href="#">Categories</a></li>
                                         <!-- <li><a href="#"> placeholder</a></li> -->
                                     </ul>
                                 
                                 </li>
                                 
 
-                                
+                               
                                
                                 
                                 {%if user.is_authenticated%}
                                 <li><a href="#">Hello, {{user.first_name}}</a>
                                     <ul class="dropdown">
-                                        <li><a href="{%url 'profile' user.id%}">Profile</a></li>
+                                        <li><a href="{% url 'profile' user.id %}">Profile</a></li>
                                         <li><a href="{% url 'logout'%}">Log out</a></li>
                                         
                                     </ul>
@@ -72,38 +72,53 @@
         </div>
     </header>
     <!-- Header End -->
- <form method="POST" enctype="multipart/form-data">
-        {%  csrf_token %}
-    <!-- Blog Details Hero Begin -->
-    <section class="blog-hero spad set-bg" data-setbg="{%static 'writeup/img/blog/blog-hero.jpg'%}">
+
+    <!-- Breadcrumb Begin -->
+    <div class="breadcrumb-option spad set-bg" data-setbg="{% static 'writeup/img/breadcrumb-bg.jpg'%}">
         <div class="container">
-            <div class="row d-flex justify-content-center">
-                <div class="col-lg-8">
-                    <div class="blog__hero__text">
-                        <h2>Are you sure want to delete {{object.title}} ?</h2>
-                        <ul>
-                            <li><h3 style="color: white;">by <span> <a href="{%url 'profile' user.id%}">{{user.first_name}}</a> </span></h3> </li>
-                            <!-- <li>{{post.date_create|date:"M d, Y"}}</li> -->
-                            <!-- <li>05 Comment</li> -->
-                        </ul>
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb__text">
+                        <h2>All Categories</h2>
+                        <div class="breadcrumb__links">
+                            <a href="{%url 'wuhpage'%}">Home</a>
+                            <span>Categorry</span>
+                        </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb End -->
+
+    <!-- Blog Section Begin -->
+    <section class="blog spad">
+        <div class="container">
+            <div class="row">
+                {%for p in cates%}
+                
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <a href="{%url 'catedetail' p.tag%}">
+                    <div class="blog__item">
+                        <h4>  {{p.tag}}</h4>
+                        
+                        
+                             
+                        
+                        <br>
+                        
+                    </div>
+                    </a>
+                </div>
+                
+                {%endfor%}
                 
             </div>
-                    <button class="animated fadeInDown">
-                        <div class="section-heading text-center">
-                            <!-- <h5 style="color: red;">avatar image scale should be 1:1</h5> <br> -->
-                            <h2>Yes</h2>
-                            
-                        </div>
-                    </button>
+
+           
+            
         </div>
     </section>
-    <!-- Blog Details Hero End -->
+    <!-- Blog Section End -->
 
-    <!-- Blog Details Section Begin -->
-                    
-                
-    </form>
-    <!-- Blog Details Section End -->
-    {% endblock %}
+{% endblock %}

@@ -242,7 +242,7 @@
 			<div class="container">
 				<div class="education-horizontal-timeline">
 					<div class="row">
-						{%for edu in user.edu.all%}
+						{%for edu in user.edu.all|dictsort:"edu_year"%}
 						
 						
 						<div class="col-sm-4">
@@ -351,7 +351,7 @@
 								
 								
 								
-								{%for exp in user.exp.all%}
+								{%for exp in user.exp.all|dictsortreversed:"exp_year"%}
 								
 								{% if not forloop.counter|divisibleby:2 %}								
 								<li>

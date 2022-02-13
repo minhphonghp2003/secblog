@@ -13,7 +13,7 @@
             <div class="row">
                 <div class="col-lg-2">
                     <div class="header__logo">
-                        <a href="./index.html" style="color: white;"><h2 style="color: white;"><em> D3ds3c</em> </h2></a>
+                        <a href="{%url 'wuhpage'%}" style="color: white;"><h2 style="color: white;"><em> D3ds3c</em> </h2></a>
                     </div>
                 </div>
                 <div class="col-lg-10">
@@ -32,7 +32,7 @@
                                         
                                         <li><a href="{%url 'userwu' user.username%}">My writeup</a></li>
                                         {%endif%}
-                                        <li><a href="#">Categories</a></li>
+                                        <li><a href="{%url 'cate'%}">Categories</a></li>
                                         <!-- <li><a href="#"> placeholder</a></li> -->
                                     </ul>
                                 
@@ -72,6 +72,8 @@
         </div>
     </header>
     <!-- Header End -->
+    {%if user.profile.tag != "visitor"%}
+    
  <form method="POST" enctype="multipart/form-data">
         {%  csrf_token %}
     <!-- Blog Details Hero Begin -->
@@ -135,5 +137,51 @@
         </div>
     </div>
     </form>
+    {%else%}
+   <section class="blog-hero spad set-bg" data-setbg="{%static 'writeup/img/blog/blog-hero.jpg'%}">
+        <div class="container">
+            <div class="row d-flex justify-content-center">
+                <div class="col-lg-8">
+                    <div class="blog__hero__text">
+                        <h2>You cannot update writeup as a visitor</h2>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Blog Details Hero End -->
+
+    <!-- Blog Details Section Begin -->
+   
+    <div class="blog-details spad">
+        <div class="container">
+            <div class="row d-flex justify-content-center">
+                <div class="col-lg-8">
+                    <div class="blog__details__content">
+                        
+                        <div class="blog__details__text">
+
+                            <h2 style="color: white; width: max-content;">Only admin and contributors can create writeups</h2>                            
+                            <h3 style="width: max-content;color: white;" > Please contact the admin
+                                (<a href="https://www.facebook.com/profile.php?id=100068404994823">facebook</a>, 
+                                <a href="https://zalo.me/0377075126">zalo</a>,
+                                0377075126
+                                )
+                                 for more information</h3>
+                            
+                        </div>
+                        
+                        
+                       
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {%endif%}
+    
     <!-- Blog Details Section End -->
     {% endblock %}
