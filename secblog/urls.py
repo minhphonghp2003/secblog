@@ -18,6 +18,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from user import views as userview
+from user.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('welcome.welcome_url')),
@@ -25,7 +26,14 @@ urlpatterns = [
     path('dedsec/',include('writeup.writeup_url')),
     path('profile/<str:p>/',userview.profile, name = "profile"),
     path('profile/myprofile/update/',userview.profileupdate, name = "profupdate"),
+    path('profile/myedu/<str:pk>/',Eduupdate.as_view(), name = "eduupdate"),
+    path('profile/myskill/<str:pk>/',Skillupdate.as_view(), name = "skillupdate"),
+    path('profile/myexp/<str:pk>/',Expupdate.as_view(), name = "expupdate"),
+    path('profile/newedu', EduCreate.as_view(), name="educreate"),
+    path('profile/newskill', SkillCreate.as_view(), name="skillcreate"),
+    path('profile/newexp', ExpCreate.as_view(), name="expcreate"),
 ]
+
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)  

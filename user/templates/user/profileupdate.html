@@ -106,7 +106,13 @@
 						<div class="header-text">
 
 							<h2>PRofile update for <br> {{user.last_name}}  {{user.first_name}}    </h2>
-							
+							<h2 style="color: blueviolet;">
+							{%if messages%}
+							{%for m in messages%}
+								{{m}}
+							{%endfor%}
+							{%endif%}
+							</h2>
 							<a href="{%url 'profile' user.id%}"> View My Profile</a>
 							
 						</div><!--/.header-text-->
@@ -230,7 +236,7 @@
 		<section id="education" class="education">
 			<div class="section-heading text-center">
 				<h2>education</h2>
-				<a href="#"><h1> Create new educations </h1></a>
+				<a href="{%url 'educreate'%}"><h1> Create new educations </h1></a>
 			</div>
 			
 			<div class="container">
@@ -244,7 +250,7 @@
 								<div class="experience-time">
 									
 									<h2>{{edu}}</h2>
-									<!-- <h3>{{edu.edu_title}}</h3> -->
+									<!-- <h3>{{edu.id}}/ {{edu.pk}}</h3> -->
 								</div><!--/.experience-time-->
 								<div class="timeline-horizontal-border">
 									<i class="fa fa-circle" aria-hidden="true"></i>
@@ -253,7 +259,7 @@
 								<div class="timeline">
 									<div class="timeline-content">
 										
-										[<a href="#"><h1> edit</h1></a>]
+										[<a href="{%url 'eduupdate' edu.id%}"><h1> edit</h1></a>]
 										
 									</div><!--/.timeline-content-->
 								</div><!--/.timeline-->
@@ -279,7 +285,7 @@
 				<div class="skill-content">
 					<div class="section-heading text-center">
 						<h2>skills</h2>
-						<a href="#"><h1> Create new skills </h1></a>
+						<a href="{%url 'skillcreate'%}"><h1> Create new skills </h1></a>
 					</div>
 					<div class="container">
 						<div class="row">
@@ -289,7 +295,7 @@
 									{%for skill in user.skill.all%}
 									{% if not forloop.counter|divisibleby:2 %}
 									<div class="barWrapper">
-										<span class="progressText">{{skill.skill_title}} </span>[<a href="#"><h1> edit</h1></a>]
+										<span class="progressText">{{skill.skill_title}} </span>[<a href="{%url 'skillupdate' skill.pk%}"><h1> edit</h1></a>]
 										<div class="single-progress-txt">
 											<div class="progress ">
 												<div class="progress-bar" role="progressbar" aria-valuenow="{{skill.skill_progress}}" aria-valuemin="10" aria-valuemax="100" style="">
@@ -309,7 +315,7 @@
 									{%for skill in user.skill.all%}
 									{% if forloop.counter|divisibleby:2 %}
 									<div class="barWrapper">
-										<span class="progressText">{{skill.skill_title}} </span> [<a href="#"><h1> edit</h1></a>]
+										<span class="progressText">{{skill.skill_title}} </span> [<a href="{%url 'skillupdate' skill.pk%}"><h1> edit</h1></a>]
 										<div class="single-progress-txt">
 											<div class="progress ">
 												<div class="progress-bar" role="progressbar" aria-valuenow="{{skill.skill_progress}}" aria-valuemin="10" aria-valuemax="100" style="">
@@ -335,7 +341,7 @@
 		<section id="exp" class="experience">
 			<div class="section-heading text-center">
 				<h2>experience</h2>
-				<a href="#"><h1> Create new experience </h1></a>
+				<a href="{%url 'expcreate'%}"><h1> Create new experience </h1></a>
 			</div>
 			<div class="container">
 				<div class="experience-content">
@@ -377,7 +383,7 @@
 												<div class="experience-time">
 													<h2>
 														<span><i class="fa fa-circle" aria-hidden="true"></i></span>
-														[<a href="#"><h1> edit</h1></a>]
+														[<a href="{%url 'expupdate' exp.id%}"><h1> edit</h1></a>]
 													</h2>
 													
 												</div><!--/.experience-time-->
@@ -392,7 +398,7 @@
 										<div class="row">
 											<div class="col-md-5">
 												<div class="experience-time text-right">
-													<h2>[<a href="#"><h1> edit</h1></a>]</h2>
+													<h2>[<a href="{%url 'expupdate' exp.id%}"><h1> edit</h1></a>]</h2>
 													
 												</div><!--/.experience-time-->
 											</div><!--/.col-->
@@ -428,25 +434,7 @@
 
 		
 
-		<!--footer-copyright start-->
-		<footer id="footer-copyright" class="footer-copyright">
-			<div class="container">
-				<div class="hm-footer-copyright text-center">
-					<p>
-						&copy; copyright <a href="{{p_form.about_fb}}">{{p_form.user.first_name}}</a> . design and developed by <a href="{%url 'welcomehome'%}">s3cbl09</a>
-					</p><!--/p-->
-				</div><!--/.text-center-->
-			</div><!--/.container-->
-
-			<div id="scroll-Top">
-				<div class="return-to-top">
-					<i class="fa fa-angle-up " id="scroll-top" ></i>
-				</div>
-				
-			</div><!--/.scroll-Top-->
-			
-        </footer><!--/.footer-copyright-->
-		<!--footer-copyright end-->
+		
 		
 		<!-- Include all js compiled plugins (below), or include individual files as needed -->
 

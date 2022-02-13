@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from PIL import Image
-
+from django.urls import reverse
 
 class Profile(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
@@ -48,15 +48,18 @@ class Education(models.Model):
 
     def __str__(self):
         return self.edu_title + "'s education" 
-    
+    def get_absolute_url(self):
+        return reverse('profupdate') 
 
 class Skill(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE,null=True,related_name="skill")
 
     skill_title = models.CharField(max_length=100, null=True)
-    skill_progress = models.DecimalField(max_digits=3, decimal_places=0, null=True)
+    skill_progress = models.DecimalField(max_digits=2, decimal_places=0, null=True)
     def __str__(self):
         return self.skill_title + "'s skill" 
+    def get_absolute_url(self):
+        return reverse('profupdate')
 
 class Experience(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE,null=True,related_name="exp")
@@ -67,5 +70,8 @@ class Experience(models.Model):
     
     def __str__(self):
         return self.exp_title + "'s exps" 
+    def get_absolute_url(self):
+        return reverse('profupdate')
+
 
 

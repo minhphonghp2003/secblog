@@ -1,6 +1,8 @@
+from urllib import request
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
-
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
 from .form import *
 from .models import *
@@ -32,11 +34,106 @@ def profile(request, p):
         'profile' : Profile.objects.filter(user=p).first(),
         'username' : User.objects.filter(id=p).first(),
 
-        
+
     }
     return render(request,'user/profile.html/',context)
 
+class Eduupdate(UserPassesTestMixin,LoginRequiredMixin,SuccessMessageMixin,UpdateView):
+    
+    model = Education
+    template_name = 'user/edu.html'
+    
+    form_class = EducationUpdate
 
+    success_message= "Your education information has been updated"
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        
+        return super().form_valid(form)
+    
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.user:
+            return True
+        else:
+            return False
+
+class Skillupdate(UserPassesTestMixin,LoginRequiredMixin,SuccessMessageMixin,UpdateView):
+    
+    model = Skill
+    template_name = 'user/skill.html'
+    success_message= "Your skills information has been updated"
+    form_class = SkillUpdate
+
+    
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+    
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.user:
+            return True
+        else:
+            return False
+
+class Expupdate(UserPassesTestMixin,LoginRequiredMixin,SuccessMessageMixin,UpdateView):
+    
+    model = Experience
+    template_name = 'user/exp.html'
+    success_message= "Your Exprience information has been updated"
+    form_class = ExperienceUpdate
+    
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+    
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.user:
+            return True
+        else:
+            return False
+
+class EduCreate(LoginRequiredMixin,SuccessMessageMixin,CreateView):
+    model = Education
+    template_name = 'user/edu.html'
+    
+    form_class = EducationUpdate
+
+    success_message= "Your education information has been created"
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        
+        return super().form_valid(form)
+    
+class SkillCreate(LoginRequiredMixin,SuccessMessageMixin,CreateView):
+    model = Skill
+    template_name = 'user/skill.html'
+    
+    form_class = SkillUpdate
+
+    success_message= "Your Skills information has been created"
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        
+        return super().form_valid(form)
+class ExpCreate(LoginRequiredMixin,SuccessMessageMixin,CreateView):
+    model = Experience
+    template_name = 'user/exp.html'
+    
+    form_class = ExperienceUpdate
+
+    success_message= "Your experience information has been created"
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        
+        return super().form_valid(form)
+  
 @login_required
 def profileupdate(request):
     profile = get_object_or_404(Profile,user=request.user)
