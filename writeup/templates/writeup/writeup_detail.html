@@ -86,7 +86,7 @@
                         {%endif%}
                         <ul>
                              <li><h3 style="color: white;"> by<span> <a  href="{%url 'profile' post.author.id%}">{{post.author.first_name}}</a> </span></h3></li>
-                            <li>{{post.date_create|date:"M d, Y"}}</li>
+                            <li><h4 style="color:aliceblue;">{{post.date_create|date:"M d, Y"}}</h4> </li>
                             <h3 style="color: blueviolet;">
                                 {%if messages%}
                                 {%for m in messages%}
@@ -127,9 +127,10 @@
                         
                         <div class="blog__details__tags">
                             <span><i class="fa fa-tag"></i> Tag:</span>
-                            <a href="#">Wedding</a>
-                            <a href="#">Event</a>
-                            <a href="#">Couple</a>
+                            {%for tag in post.cate.all%}
+                            <a href="#">{{tag}}</a>
+                            {%endfor%}
+                            <!-- <h3 style="color: white;"> {{post.cate.all}}</h3> -->
                         </div>
                         <div class="blog__details__option">
                             <div class="row">
