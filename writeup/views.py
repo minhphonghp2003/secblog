@@ -9,7 +9,13 @@ from django.contrib.auth.models import User
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 def writeup_hpage(request):
-    return render(request,'writeup/index.html')
+    context = {
+        'writeup' : Writeup.objects.all().order_by("-date_create"),
+        'profile' : Profile.objects.all(),
+        'contrib' :Profile.objects.filter(tag= 'contributor').count, 
+        'cate' : Cate.objects.all().count
+    }
+    return render(request,'writeup/index.html',context)
     
 def about(request):
     return render(request,'writeup/about.html')
