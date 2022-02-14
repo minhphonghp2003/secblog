@@ -32,11 +32,13 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-
+CKEDITOR_UPLOAD_PATH = 'post_upload/'
 # Application definition
 
 INSTALLED_APPS = [
     'welcome.apps.WelcomeConfig',
+    'ckeditor',
+    'ckeditor_uploader',
     'writeup.apps.WriteupConfig',
     'user.apps.UserConfig',
     'jquery',

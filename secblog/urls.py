@@ -20,6 +20,8 @@ from django.conf.urls.static import static
 from user import views as userview
 from user.views import *
 urlpatterns = [
+    path('ckeditor', include('ckeditor_uploader.urls')),
+
     path('admin/', admin.site.urls),
     path('',include('welcome.welcome_url')),
     path('user/',include('user.user_url')),

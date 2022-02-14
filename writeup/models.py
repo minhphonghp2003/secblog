@@ -2,8 +2,9 @@ from pyexpat import model
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
-
+from ckeditor.fields import RichTextField
 from django.urls import reverse
+from ckeditor_uploader.fields import RichTextUploadingField
 
 class Cate(models.Model):
     
@@ -17,7 +18,7 @@ class Writeup(models.Model):
 
     title = models.CharField(max_length=100)
     prerequis = models.TextField()
-    content = models.TextField()
+    content_upload = RichTextUploadingField(blank=True, null=True)
     cate = models.ManyToManyField(Cate, related_name='writeup')
     date_create = models.DateTimeField(default = timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE,related_name='writeup')
