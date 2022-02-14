@@ -17,7 +17,7 @@ class Writeup(models.Model):
     
 
     title = models.CharField(max_length=100)
-    prerequis = models.TextField()
+    prerequis =  RichTextUploadingField(blank=True, null=True)
     content_upload = RichTextUploadingField(blank=True, null=True)
     cate = models.ManyToManyField(Cate, related_name='writeup')
     date_create = models.DateTimeField(default = timezone.now)
