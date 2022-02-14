@@ -16,8 +16,8 @@ class Profile(models.Model):
 
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     tag = models.CharField(max_length=50,default='visitor',choices=TAG)
-    about_title = models.CharField(max_length=100)
-    about_bio = models.TextField()
+    about_title = models.CharField(max_length=100,blank = True)
+    about_bio = models.TextField(blank=True)
     about_phone = models.CharField(max_length=12, null=True,blank=True)
     about_email = models.EmailField(null=True,blank=True)
     image = models.ImageField(default='default.jpg',upload_to='profile_pics')
