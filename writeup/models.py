@@ -15,7 +15,7 @@ class Cate(models.Model):
 
 class Writeup(models.Model):
     
-
+    like = models.ManyToManyField(User,related_name='like')
     title = models.CharField(max_length=100)
     prerequis =  RichTextUploadingField(blank=True, null=True)
     content_upload = RichTextUploadingField(blank=True, null=True)

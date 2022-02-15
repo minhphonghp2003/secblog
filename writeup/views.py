@@ -5,7 +5,8 @@ from .form import *
 from user.models import Profile
 from .models import Writeup
 from django.contrib.auth.models import User
- 
+from django.http import HttpResponseRedirect
+from django.urls import reverse 
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 def writeup_hpage(request):
@@ -99,3 +100,15 @@ class CateDetail(ListView):
     def get_queryset(self) :
         t = get_object_or_404(Cate,tag=self.kwargs.get('tag'))
         return Writeup.objects.filter(cate=t).order_by('-date_create')
+
+
+
+def Like(request, pk):
+    writeup = get_object_or_404(Writeup,id = pk)
+    if writeup.like.filter(id=request.user.id).exists():
+        writeup.like.remove(request.user)
+    else:        
+        writeup.like.add(request.user)
+    
+
+    return HttpResponseRedirect(reverse('writeupdetail',args=[int(pk)]))
