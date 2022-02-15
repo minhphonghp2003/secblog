@@ -2,17 +2,14 @@ from django.shortcuts import render,get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from .form import *
-try:
-    from django.utils import simplejson as json
-except ImportError:
-    import json
+
 from user.models import Profile
 from .models import Writeup
 from django.contrib.auth.models import User
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.urls import reverse 
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-
+from django.contrib.auth.decorators import login_required
 def writeup_hpage(request):
     context = {
         'writeup' : Writeup.objects.all().order_by("-date_create"),
@@ -106,7 +103,7 @@ class CateDetail(ListView):
         return Writeup.objects.filter(cate=t).order_by('-date_create')
 
 
-
+@login_required
 def Like(request, pk):
     writeup = get_object_or_404(Writeup,id = pk)
     if writeup.like.filter(id=request.user.id).exists():
@@ -117,3 +114,17 @@ def Like(request, pk):
 
     return HttpResponseRedirect(reverse('writeupdetail',args=[int(pk)]))
 
+def NewLike(request):
+    if request.POST.get('action') == 'post':
+        result = 0
+        id = int(request.POST.get('postid'))
+        writeup = get_object_or_404(Writeup,id = id)
+        if writeup.like.filter(id=request.user.id).exists():
+            writeup.like.remove(request.user)
+            result = -1
+            
+        else:        
+            writeup.like.add(request.user)
+            result =1
+       
+        return JsonResponse({'result':result,})

@@ -17,5 +17,6 @@ urlpatterns = [
     path('category/<str:tag>/', CateDetail.as_view(), name = 'catedetail'),
 
     path('likepage/<int:pk>',views.Like,name = 'likepage'),
+    path('newlike/',views.NewLike,name = 'newlike'),
    
 ]
