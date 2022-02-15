@@ -133,6 +133,7 @@
                             <!-- <h3 style="color: white;"> {{post.cate.all}}</h3> -->
                         </div>
                         <!-- {{post.id}} -->
+                        <!-- like  -->
                         {%if user.is_authenticated%}
                         <form action="{%url 'likepage' post.id %}" method="POST">
                             {%csrf_token%}
@@ -143,6 +144,11 @@
                             {%endif%}
                         </form>
                         {%endif%}
+                        <!-- end like  -->
+                        
+                        <!-- new like  -->
+                        
+                        <!-- new end like  -->
                         <div class="blog__details__tags">
                             <span><i class="fa fa-tag"></i> Like:{{post.like.count}}</span>
                             

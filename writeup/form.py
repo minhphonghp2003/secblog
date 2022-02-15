@@ -8,4 +8,4 @@ class Writeupform(forms.ModelForm):
     class Meta:
         model = Writeup
         field = '__all__'
-        exclude = ['author','date_create']
+        exclude = ['author','date_create','like']

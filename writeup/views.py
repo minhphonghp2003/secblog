@@ -2,10 +2,14 @@ from django.shortcuts import render,get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from .form import *
+try:
+    from django.utils import simplejson as json
+except ImportError:
+    import json
 from user.models import Profile
 from .models import Writeup
 from django.contrib.auth.models import User
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse 
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
@@ -112,3 +116,4 @@ def Like(request, pk):
     
 
     return HttpResponseRedirect(reverse('writeupdetail',args=[int(pk)]))
+
