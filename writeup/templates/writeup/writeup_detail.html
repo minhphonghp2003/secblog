@@ -154,7 +154,7 @@
                         $(document).on('click','#co',function(){
                             $.ajax({
                                      type: "POST",
-                                     url: "{% url 'newlike' %}",
+                                     url: "{% url 'like' %}",
                                      data: {postid:  $(this).attr('name'),csrfmiddlewaretoken: '{{ csrf_token }}',action:'post'},
                                      
                                      success: function(json) {

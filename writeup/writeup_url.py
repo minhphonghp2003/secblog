@@ -16,7 +16,7 @@ urlpatterns = [
     path('category/',CateList.as_view(),name = 'cate'),
     path('category/<str:tag>/', CateDetail.as_view(), name = 'catedetail'),
 
-    path('likepage/<int:pk>',views.Like,name = 'likepage'),
-    path('newlike/',views.NewLike,name = 'newlike'),
+    
+    path('like/',views.Like,name = 'like'),
    
 ]

@@ -104,17 +104,7 @@ class CateDetail(ListView):
 
 
 @login_required
-def Like(request, pk):
-    writeup = get_object_or_404(Writeup,id = pk)
-    if writeup.like.filter(id=request.user.id).exists():
-        writeup.like.remove(request.user)
-    else:        
-        writeup.like.add(request.user)
-    
-
-    return HttpResponseRedirect(reverse('writeupdetail',args=[int(pk)]))
-
-def NewLike(request):
+def Like(request):
     if request.POST.get('action') == 'post':
         result = 0
         id = int(request.POST.get('postid'))
