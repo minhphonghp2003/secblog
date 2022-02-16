@@ -1,4 +1,5 @@
 from dataclasses import field
+from operator import mod
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
@@ -9,3 +10,5 @@ class Writeupform(forms.ModelForm):
         model = Writeup
         field = '__all__'
         exclude = ['author','date_create','like']
+
+

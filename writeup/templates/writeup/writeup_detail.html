@@ -164,19 +164,12 @@
                                             document.getElementById("likenum").innerHTML = like
                                             if (json['result'] == 1) {
                                                 $(btn).css("color","blue");
-                                                document.getElementById("likebtn").innerHTML = 'Dislike'
+                                                
                                             } else {
                                                 $(btn).css("color","black");
-                                                document.getElementById("likebtn").innerHTML = 'Like'
+                                                
                                             }
-                                            // console.log(like) 
-                                            // if(response.liked==true){
-                                            //   $(selector).css("color","blue");
-                                            // }
-                                            // else if(response.liked==false){
-                                            //   $(selector).css("color","black");
-                                            // }
-                                            //     // console.log(json['result'])
+                                            
                         
                                       }
                         
@@ -208,6 +201,20 @@
                                 </div>
                                 {%endif%}
                                 {%if post.get_next_by_date_create%}
+                                {%if not post.get_previous_by_date_create%}
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    <a href="{%url 'writeupdetail' post.get_next_by_date_create.id%}" class="blog__details__option__item">
+                                        <h5><i class="fa fa-angle-left"></i> Next posts</h5>
+                                        <div class="blog__details__option__item__img">
+                                            <img src="{% static 'writeup/img/blog/prev.jpg'%}" alt="">
+                                        </div>
+                                        <div class="blog__details__option__item__text">
+                                            <h6>{{post.get_next_by_date_create.title}}</h6>
+                                            <span>{{post.get_next_by_date_create.date_create| date:"M d, Y"}}</span>
+                                        </div>
+                                    </a>
+                                </div>
+                                {%else%}
                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                     <a href="{%url 'writeupdetail' post.get_next_by_date_create.id%}" class="blog__details__option__item blog__details__option__item--right">
                                         <h5>Next posts <i class="fa fa-angle-right"></i></h5>
@@ -220,21 +227,73 @@
                                         </div>
                                     </a>
                                 </div>
+                                {%endif%}
+                                {%endif%}
+
                             </div>
                         </div>
-                        {%endif%}
+                        <!-- cmt  -->
+                        {%if user.is_authenticated%}
                         <div class="blog__details__comment">
                             <h4>Leave a comment</h4>
-                            <form action="#">
-                                <div class="input__list">
-                                    <input type="text" placeholder="Name">
-                                    <input type="text" placeholder="Email">
-                                    <input type="text" placeholder="Website">
-                                </div>
-                                <textarea placeholder="Comment"></textarea>
-                                <button type="submit" class="site-btn">Send Message</button>
-                            </form>
+                           
+                                
+                                <textarea id="textarea" rows="10"></textarea>
+                                <button id="cmt" type="submit" class="site-btn" value="{{post.id}}" >Send Message</button>
+                            
                         </div>
+                        {%else%}
+                        <h4 class="blog__details__comment">Login to comment</h4>
+                        {%endif%}
+                         <script>
+                       
+                        $(document).on('click','#cmt',function(){
+                            $.ajax({
+                                     type: "POST",
+                                     url: "{% url 'cmt' %}",
+                                     data: {content:  $('textarea').val(),wu_id : $('#cmt').val(),csrfmiddlewaretoken: '{{ csrf_token }}',action:'post'},
+                                     
+                                     success: function(json) {
+                                            
+                                            document.getElementById("newcontent").innerHTML = json['content'];
+                                            document.getElementById("complete").innerHTML = "<h3> Your new comment </h3>";
+                                      }
+                        
+                                });
+                                $("#textarea").val('');
+                          }) 
+                        </script>
+                        <!-- cmt end  -->
+
+                        <br>
+                        <div id="complete">
+                        </div>
+                        <p id="newcontent" >
+                        </p> 
+                        <br>
+                        {%for cmt in post.cmt.all|dictsortreversed:"date"%}
+                        <div class="col-lg-6 col-md-6 col-sm-6" style="max-width: max-content;">
+                                    
+                                      
+                                  
+                            
+                                    <div class="blog__details__option__item__img" style="">
+                                        <img style="max-width: 100px;" src="{{cmt.user.profile.image.url}}" alt="">
+                                        <a href="{%url 'profile' cmt.user.id%}"> <h6>{{cmt.user.first_name}} {{cmt.user.last_name}}</h6></a>
+                                        <span style="color: white;">{{cmt.date|date:"M d, Y"}}</span>
+                                    </div>
+                                    <!-- <div class="blog__details__option__item__text">
+                                        
+                                    </div> -->
+                                    
+                                    <p >
+                                        
+                                    {{cmt.content}}
+                                    </p>
+                                   
+                                
+                        </div>
+                        {%endfor%}
                     </div>
                 </div>
             </div>

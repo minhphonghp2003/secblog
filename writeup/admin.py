@@ -4,3 +4,4 @@ from .models import *
 
 admin.site.register(Writeup)
 admin.site.register(Cate)
+admin.site.register(Commment)

@@ -18,5 +18,6 @@ urlpatterns = [
 
     
     path('like/',views.Like,name = 'like'),
+    path('comment/',views.Cmt, name='cmt')
    
 ]

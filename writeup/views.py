@@ -2,7 +2,7 @@ from django.shortcuts import render,get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from .form import *
-
+# from django.core import serializers
 from user.models import Profile
 from .models import Writeup
 from django.contrib.auth.models import User
@@ -105,7 +105,7 @@ class CateDetail(ListView):
 
 @login_required
 def Like(request):
-    if request.POST.get('action') == 'post':
+    if request.POST.get('action') == 'post' :
         result = 0
         id = int(request.POST.get('postid'))
         writeup = get_object_or_404(Writeup,id = id)
@@ -118,3 +118,18 @@ def Like(request):
             result =1
        
         return JsonResponse({'result':result,})
+
+def Cmt(request):
+    if request.method == "POST":
+        if request.POST.get('content'):
+            id = request.POST.get('wu_id')
+            writeup = get_object_or_404(Writeup,id=id)
+            content = request.POST.get('content')
+            user = request.user
+            name = user.first_name + ' '+ user.last_name
+            
+            writeup.cmt.create(user=user,content=content)
+           
+            return JsonResponse({'content':content,})
+
+    return JsonResponse({'content':'null'})
