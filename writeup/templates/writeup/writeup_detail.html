@@ -255,8 +255,7 @@
                                      
                                      success: function(json) {
                                             
-                                            document.getElementById("newcontent").innerHTML = json['content'];
-                                            document.getElementById("complete").innerHTML = "<h3> Your new comment </h3>";
+                                           alert(json['message'])
                                       }
                         
                                 });
@@ -266,30 +265,45 @@
                         <!-- cmt end  -->
 
                         <br>
-                        <div id="complete">
-                        </div>
-                        <p id="newcontent" >
-                        </p> 
+                       
                         <br>
                         {%for cmt in post.cmt.all|dictsortreversed:"date"%}
                         <div class="col-lg-6 col-md-6 col-sm-6" style="max-width: max-content;">
-                                    
-                                      
-                                  
-                            
-                                    <div class="blog__details__option__item__img" style="">
-                                        <img style="max-width: 100px;" src="{{cmt.user.profile.image.url}}" alt="">
-                                        <a href="{%url 'profile' cmt.user.id%}"> <h6>{{cmt.user.first_name}} {{cmt.user.last_name}}</h6></a>
-                                        <span style="color: white;">{{cmt.date|date:"M d, Y"}}</span>
-                                    </div>
-                                    <!-- <div class="blog__details__option__item__text">
-                                        
-                                    </div> -->
-                                    
-                                    <p >
-                                        
-                                    {{cmt.content}}
-                                    </p>
+                                
+                            <div class="blog__details__option__item__img" style="">
+                                <img style="max-width: 100px;" src="{{cmt.user.profile.image.url}}" alt="">
+                                <a href="{%url 'profile' cmt.user.id%}"> <h6>{{cmt.user.first_name}} {{cmt.user.last_name}}</h6></a>
+                                <span style="color: white;">{{cmt.date|date:"M d, Y"}}</span>
+                            </div>
+                            <!-- <div class="blog__details__option__item__text">
+                                
+                            </div> -->
+                            {%if cmt.user == user%}
+                            <a id="cmtdel" name = {{cmt.id}} style="cursor: pointer; color: blue;" >delete</a>
+                             <script>
+                       
+                        $(document).on('click','#cmtdel',function(){
+                            ele = document.getElementById("cmtdel")
+                            $.ajax({
+                                     type: "POST",
+                                     url: "{% url 'cmtdel' %}",
+                                     data: {cmtid:  $(this).attr('name'),csrfmiddlewaretoken: '{{ csrf_token }}'},
+                                     
+                                     success: function(json) {
+                                            alert(json['message'])
+                                            
+                        
+                                      }
+                        
+                                });
+                        
+                          }) 
+                        </script>
+                            {%endif%}
+                            <p >
+                                
+                            {{cmt.content}}
+                            </p>
                                    
                                 
                         </div>

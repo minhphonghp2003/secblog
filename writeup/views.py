@@ -126,10 +126,23 @@ def Cmt(request):
             writeup = get_object_or_404(Writeup,id=id)
             content = request.POST.get('content')
             user = request.user
-            name = user.first_name + ' '+ user.last_name
+            
             
             writeup.cmt.create(user=user,content=content)
            
-            return JsonResponse({'content':content,})
+            return JsonResponse({'message':'Your comment created',})
 
     return JsonResponse({'content':'null'})
+
+def CmtDel(request):
+    if request.method == 'POST':
+        id = request.POST.get('cmtid')
+        cmt = get_object_or_404(Commment, id=id)
+        cmt.delete()
+        data = {
+            'message' : 'Comment deleted',
+
+        }
+        return JsonResponse(data)
+    
+    return JsonResponse({'data':'null'})

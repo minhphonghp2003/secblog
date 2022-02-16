@@ -18,6 +18,8 @@ urlpatterns = [
 
     
     path('like/',views.Like,name = 'like'),
-    path('comment/',views.Cmt, name='cmt')
+    path('comment/',views.Cmt, name='cmt'),
+
+    path('comment/delete',views.CmtDel, name = 'cmtdel')
    
 ]
