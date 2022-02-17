@@ -27,5 +27,5 @@ def Success(request):
             send_mail(subject, message, from_email, ['minhphonghp2003@gmail.com'])
         except BadHeaderError:
             return HttpResponse('Invalid header found.')
-        return JsonResponse({'name':name,})
+        return JsonResponse({'date':'null',})
     

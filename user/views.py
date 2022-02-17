@@ -1,3 +1,4 @@
+import re
 from urllib import request
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
@@ -6,6 +7,8 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
 from .form import *
 from .models import *
+from django.core.mail import send_mail, BadHeaderError
+from django.http import HttpResponse, HttpResponseRedirect,JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 # Create your views here.
@@ -30,13 +33,27 @@ def register(request):
 
 def profile(request, p):
    
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        subject =  request.POST.get('subject')
+        
+        fromemail = request.POST.get('email')
+        message = 'Sent from: '+ fromemail + ' ( '+ name+ ' )' + '\n'+'Subject: '+ subject + '\n' + "Message: " + str(request.POST.get('message'))
+        toemail = request.POST.get('toemail')
+        messages.success(request,"Email sent")
+        try:
+            send_mail('Email sent from visitor at secblog.', message, fromemail, [toemail])
+        except BadHeaderError:
+            return HttpResponse('Invalid header found.')
+        
+        
+    
     context = {
-        'profile' : Profile.objects.filter(user=p).first(),
-        'username' : User.objects.filter(id=p).first(),
-
-
+    'profile' : Profile.objects.filter(user=p).first(),
+    'username' : User.objects.filter(id=p).first(),
     }
     return render(request,'user/profile.html/',context)
+    
 
 class Eduupdate(UserPassesTestMixin,LoginRequiredMixin,SuccessMessageMixin,UpdateView):
     

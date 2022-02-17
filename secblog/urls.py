@@ -45,6 +45,8 @@ urlpatterns = [
     path('profile/deledu/<str:pk>/',Edudel.as_view(), name = "edudelete"),
     path('profile/delskill/<str:pk>/',Skilldel.as_view(), name = "skilldelete"),
     path('profile/delexp/<str:pk>/',Expdel.as_view(), name = "expdelete"),
+
+   
 ]
 
 

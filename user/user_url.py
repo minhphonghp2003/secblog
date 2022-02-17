@@ -14,6 +14,7 @@ urlpatterns = [
     path('passwdresetcompleted/',auth_view.PasswordResetCompleteView.as_view(template_name='user/passwdresetcompleted.html'),name = 'password_reset_complete'),
 
     
+    
 
 ]   
 
