@@ -22,6 +22,8 @@ urlpatterns = [
     path('comment/delete',views.CmtDel, name = 'cmtdel'),
 
     path('contrib/',Contrib.as_view(), name = 'contrib'),
+
+    path('search/',views.Search,name = 'search'),
     
    
 ]

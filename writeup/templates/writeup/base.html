@@ -85,9 +85,10 @@
                     <div class="col-lg-4 col-md-12">
                         <div class="footer__option__item">
                             <h5>Search</h5>
-                            <p>Search for stuff in our website</p>
-                            <form action="#">
-                                <input type="text" placeholder="Email">
+                            <p>Search for users, writeup, category,...</p>
+                            <form action="{%url 'search'%}" method="post">
+                                {%csrf_token%}
+                                <input name="search" type="text" placeholder="">
                                 <button type="submit"><i class="fa fa-send"></i></button>
                             </form>
                         </div>

@@ -112,6 +112,31 @@ class Contrib(ListView):
         context = super(Contrib, self).get_context_data(**kwargs)
         context['cont'] = Profile.objects.filter(tag='contributor')     
         return context
+
+
+
+def Search(request):
+    if request.method == "POST":
+        search = request.POST.get('search')
+        
+        
+        userf_n = User.objects.filter(first_name = search).first()
+        
+        writeup = Writeup.objects.filter(title=search)
+        cate = Cate.objects.filter(tag = search)
+        
+        data = {
+            'usrfn': userf_n,
+            'search':search,
+            'writeup': writeup,
+            'cate' : cate,
+        }
+        return render(request,'writeup/search.html',data)
+
+        
+
+
+
 @login_required
 def Like(request):
     if request.POST.get('action') == 'post' :
