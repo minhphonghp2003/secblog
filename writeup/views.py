@@ -103,6 +103,15 @@ class CateDetail(ListView):
         return Writeup.objects.filter(cate=t).order_by('-date_create')
 
 
+class Contrib(ListView):
+    model = User
+    template_name = 'writeup/contrib.html'
+    context_object_name = 'obj'
+    paginate_by = 9
+    def get_context_data(self, **kwargs):
+        context = super(Contrib, self).get_context_data(**kwargs)
+        context['cont'] = Profile.objects.filter(tag='contributor')     
+        return context
 @login_required
 def Like(request):
     if request.POST.get('action') == 'post' :
@@ -130,9 +139,9 @@ def Cmt(request):
             
             writeup.cmt.create(user=user,content=content)
            
-            return JsonResponse({'message':'Your comment created',})
+            return JsonResponse({'message':'Your comment sent',})
 
-    return JsonResponse({'content':'null'})
+    return JsonResponse({'content':'null'},status = 400)
 
 def CmtDel(request):
     if request.method == 'POST':
@@ -145,4 +154,4 @@ def CmtDel(request):
         }
         return JsonResponse(data)
     
-    return JsonResponse({'data':'null'})
+    return JsonResponse({'data':'null'},status = 400)

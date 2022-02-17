@@ -19,7 +19,9 @@ urlpatterns = [
     
     path('like/',views.Like,name = 'like'),
     path('comment/',views.Cmt, name='cmt'),
+    path('comment/delete',views.CmtDel, name = 'cmtdel'),
 
-    path('comment/delete',views.CmtDel, name = 'cmtdel')
+    path('contrib/',Contrib.as_view(), name = 'contrib'),
+    
    
 ]
