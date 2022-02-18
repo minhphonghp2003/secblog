@@ -10,6 +10,9 @@ from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.urls import reverse 
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.decorators import login_required
+
+
+
 def writeup_hpage(request):
     context = {
         'writeup' : Writeup.objects.all().order_by("-date_create"),

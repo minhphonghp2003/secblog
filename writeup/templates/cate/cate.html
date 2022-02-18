@@ -23,7 +23,7 @@
                                 <li style="color: red;"><a href="{%url 'welcomehome'%}" > <h5 style="color: pink;">Welcome page</h5></a></li>
                                 <li ><a href="{%url 'wuhpage'%}">Home</a></li>
                                 
-                                <li ><a href="#">Roadmap</a></li> 
+                                <!-- <li ><a href="#">Roadmap</a></li>  -->
                                 <li class="active"><a href="{%url 'writeup'%}">Writeup</a>
                                     <ul class="dropdown">
 
@@ -100,6 +100,7 @@
                 <div class="col-lg-4 col-md-6 col-sm-6">
                     <a href="{%url 'catedetail' p.tag%}">
                     <div class="blog__item">
+                        <img style="height: 55px; width: 100%;" src="{{p.image.url}}" alt="">
                         <h4>  {{p.tag}}</h4>
                         
                         

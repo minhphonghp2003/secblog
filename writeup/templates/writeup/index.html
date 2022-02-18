@@ -24,7 +24,7 @@
                             <ul>
                                 <li style="color: red;"><a href="{%url 'welcomehome'%}" > <h5 style="color: pink;">Welcome page</h5></a></li>
                                 <li class="active"><a href="{%url 'wuhpage'%}">Home</a></li>
-                                 <li ><a href="#">Roadmap</a></li>
+                                 <!-- <li ><a href="#">Roadmap</a></li> -->
                                 
                                 <li><a href="{%url 'writeup'%}">Writeup</a>
                                     <ul class="dropdown">
@@ -311,6 +311,7 @@
                     {%else%}
                     <div class="col-lg-4">
                         <div class="blog__item latest__item">
+                            <img style="height: 55px; width: 100%;" src="{{w.cate.first.image.url}}" alt="">
                             <a href="{%url 'writeupdetail' w.id%}"><h4>{{w.title}}</h4>  </a>
                             <ul>
                                 <li>{{w.date_create|date:"M d,Y"}}</li>

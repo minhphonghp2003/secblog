@@ -1,3 +1,5 @@
+from email.mime import image
+from email.policy import default
 from pyexpat import model
 from django.db import models
 from django.utils import timezone
@@ -8,7 +10,7 @@ from ckeditor_uploader.fields import RichTextUploadingField
 
 class Cate(models.Model):
     
-    
+    image= models.ImageField(default='defaultback.jpg',upload_to = 'cate')
     tag = models.CharField(default='challenge',max_length=100)
     def __str__(self):
         return self.tag
