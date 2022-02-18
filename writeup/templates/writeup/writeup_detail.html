@@ -271,12 +271,30 @@
                                     
                                 </div>
                                 <div class="blog__details__option__item__text">
-                                    <h6></h6><a href="{%url 'profile' cmt.user.id%}"> {{cmt.user.first_name}} {{cmt.user.last_name}}</a></h6>
+                                    <a href="{%url 'profile' cmt.user.id%}"> {{cmt.user.first_name}} {{cmt.user.last_name}}</a></h6>
                                     <span style="color: white;">{{cmt.date|date:"M d, Y"}}</span>
                                 </div> 
                                 {%if cmt.user == user%}
                                 <a id="cmtdel" name = {{cmt.id}} style="cursor: pointer; color: blue;" >delete</a>
-                                <script>
+                                
+                                {%endif%}
+                                <p >
+                                    
+                                {{cmt.content}}
+                                
+                                    
+                                </p>
+                                    
+                            </div>
+                        {%endfor%}
+
+                    </div>
+               
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
                         
                                 $(document).on('click','#cmtdel',function(){
                                     ele = document.getElementById("cmtdel")
@@ -295,22 +313,5 @@
                                 
                                 }) 
                                 </script>
-                                {%endif%}
-                                <p >
-                                    
-                                {{cmt.content}}
-                                
-                                    
-                                    
-                            </div>
-                        </p>
-                        {%endfor%}
-
-                    </div>
-               
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- Blog Details Section End -->
     {% endblock %}
