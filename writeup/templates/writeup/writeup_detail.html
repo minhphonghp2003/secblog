@@ -139,9 +139,9 @@
                          {%if user.is_authenticated%}
                             {%if user in post.like.all%}
                            
-                            <a name="{{ post.id }}" style="font-size:48px;color: blue;cursor:pointer;" class="likin" id="co"><i class="fa fa-thumbs-up" aria-hidden="true"></i></a>
+                            <a name="{{ post.id }}" style="font-size:48px;color: yellow;cursor:pointer;" class="likin" id="co"><i class="fa fa-star" aria-hidden="true"></i></a>
                            {%else%}
-                            <a name="{{ post.id }}" style="font-size:48px;color: black;cursor:pointer;" class="likin" id="co"><i class="fa fa-thumbs-up" aria-hidden="true"></i></a>
+                            <a name="{{ post.id }}" style="font-size:48px;color: white;cursor:pointer;" class="likin" id="co"><i class="fa fa-star" aria-hidden="true"></i></a>
 
                         {%endif%}
                         {%else%}
@@ -163,10 +163,10 @@
                                             btn = document.getElementById("co")
                                             document.getElementById("likenum").innerHTML = like
                                             if (json['result'] == 1) {
-                                                $(btn).css("color","blue");
+                                                $(btn).css("color","yellow");
                                                 
                                             } else {
-                                                $(btn).css("color","black");
+                                                $(btn).css("color","white");
                                                 
                                             }
                                             
@@ -179,7 +179,7 @@
                         </script>
                         <!-- new end like  -->
                         <div class="blog__details__tags">
-                          LIke: <span id="likenum">  {{post.like.count}}</span>
+                         <h5>Like:  <span id="likenum">  {{post.like.count}}</span></h5>
                             
                             <!-- <h3 style="color: white;"> {{post.cate.all}}</h3> -->
                         </div>
