@@ -82,7 +82,6 @@
                     <div class="blog__hero__text">
                         <h2>Are you sure want to delete {{object.title}} ?</h2>
                         <ul>
-                            <li><h3 style="color: white;">by <span> <a href="{%url 'profile' user.id%}">{{user.first_name}}</a> </span></h3> </li>
                             <!-- <li>{{post.date_create|date:"M d, Y"}}</li> -->
                             <!-- <li>05 Comment</li> -->
                         </ul>
@@ -90,13 +89,17 @@
                 </div>
                 
             </div>
-                    <button class="animated fadeInDown">
+                    <button class="animated fadeInDown" >
                         <div class="section-heading text-center">
                             <!-- <h5 style="color: red;">avatar image scale should be 1:1</h5> <br> -->
-                            <h2>Yes</h2>
+                            <h2 style="color: red;">Yes</h2>
                             
                         </div>
                     </button>
+                    <h2>
+                        <a class="animated fadeInDown section-heading text-center" href="{%url 'writeupdetail' object.id%}"> no</a>
+   
+                    </h2>
         </div>
     </section>
     <!-- Blog Details Hero End -->
@@ -105,5 +108,6 @@
                     
                 
     </form>
+    
     <!-- Blog Details Section End -->
     {% endblock %}
