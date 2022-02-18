@@ -270,13 +270,15 @@
                             <div class="col-lg-6 col-md-6 col-sm-6" style="max-width: max-content;">
                                
                                 <div class="blog__details__option__item__img" style="">
-                                    <img   style="max-width: 100px;  border-radius: 50%;" src="{{cmt.user.profile.image.url}}" alt="">
+                                    <img   style="max-width: 100px;max-height: 80px;  border-radius: 50%;" src="{{cmt.user.profile.image.url}}" alt="">
                                     
                                 </div>
                                 <div class="blog__details__option__item__text">
                                     <a href="{%url 'profile' cmt.user.id%}"> {{cmt.user.first_name}} {{cmt.user.last_name}}</a></h6>
                                     <span style="color: white;">{{cmt.date|date:"M d, Y"}}</span>
                                 </div> 
+                                
+                                    
                                 {%if cmt.user == user%}
                                 <a id="cmtdel" name = {{cmt.id}} style="cursor: pointer; color: blue;" >delete</a>
                                 

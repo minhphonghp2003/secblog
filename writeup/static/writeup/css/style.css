@@ -1791,7 +1791,7 @@ ol {
 /*--------------------------------- Responsive Media Quaries -----------------------------*/
 @media only screen and (min-width: 1200px) {
   .container {
-    max-width: 90%;
+    max-width: 80%;
   }
 }
 /* Medium Device = 1200px */
