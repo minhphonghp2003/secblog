@@ -190,9 +190,8 @@
                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                     <a href="{%url 'writeupdetail' post.get_previous_by_date_create.id%}" class="blog__details__option__item">
                                         <h5><i class="fa fa-angle-left"></i> Previous posts</h5>
-                                        <div class="blog__details__option__item__img">
-                                            <img src="{% static 'writeup/img/blog/prev.jpg'%}" alt="">
-                                        </div>
+                                        
+                                       
                                         <div class="blog__details__option__item__text">
                                             <h6>{{post.get_previous_by_date_create.title}}</h6>
                                             <span>{{post.get_previous_by_date_create.date_create| date:"M d, Y"}}</span>
@@ -205,9 +204,7 @@
                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                     <a href="{%url 'writeupdetail' post.get_next_by_date_create.id%}" class="blog__details__option__item">
                                         <h5><i class="fa fa-angle-left"></i> Next posts</h5>
-                                        <div class="blog__details__option__item__img">
-                                            <img src="{% static 'writeup/img/blog/prev.jpg'%}" alt="">
-                                        </div>
+                                      
                                         <div class="blog__details__option__item__text">
                                             <h6>{{post.get_next_by_date_create.title}}</h6>
                                             <span>{{post.get_next_by_date_create.date_create| date:"M d, Y"}}</span>
@@ -218,9 +215,7 @@
                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                     <a href="{%url 'writeupdetail' post.get_next_by_date_create.id%}" class="blog__details__option__item blog__details__option__item--right">
                                         <h5>Next posts <i class="fa fa-angle-right"></i></h5>
-                                        <div class="blog__details__option__item__img">
-                                            <img src="{% static 'writeup/img/blog/prev.jpg'%}" alt="">
-                                        </div>
+                                       
                                         <div class="blog__details__option__item__text">
                                             <h6>{{post.get_next_by_date_create.title}}</h6>
                                             <span>{{post.get_next_by_date_create.date_create| date:"M d, Y"}}</span>
@@ -268,47 +263,51 @@
                        
                         <br>
                         {%for cmt in post.cmt.all|dictsortreversed:"date"%}
-                        <div class="col-lg-6 col-md-6 col-sm-6" style="max-width: max-content;">
-                                
-                            <div class="blog__details__option__item__img" style="">
-                                <img style="max-width: 100px;" src="{{cmt.user.profile.image.url}}" alt="">
-                                <a href="{%url 'profile' cmt.user.id%}"> <h6>{{cmt.user.first_name}} {{cmt.user.last_name}}</h6></a>
-                                <span style="color: white;">{{cmt.date|date:"M d, Y"}}</span>
-                            </div>
-                            <!-- <div class="blog__details__option__item__text">
-                                
-                            </div> -->
-                            {%if cmt.user == user%}
-                            <a id="cmtdel" name = {{cmt.id}} style="cursor: pointer; color: blue;" >delete</a>
-                             <script>
                        
-                        $(document).on('click','#cmtdel',function(){
-                            ele = document.getElementById("cmtdel")
-                            $.ajax({
-                                     type: "POST",
-                                     url: "{% url 'cmtdel' %}",
-                                     data: {cmtid:  $(this).attr('name'),csrfmiddlewaretoken: '{{ csrf_token }}'},
-                                     
-                                     success: function(json) {
-                                            alert(json['message'])
+                            <div class="col-lg-6 col-md-6 col-sm-6" style="max-width: max-content;">
+                               
+                                <div class="blog__details__option__item__img" style="">
+                                    <img   style="max-width: 100px;  border-radius: 50%;" src="{{cmt.user.profile.image.url}}" alt="">
+                                    
+                                </div>
+                                <div class="blog__details__option__item__text">
+                                    <a href="{%url 'profile' cmt.user.id%}"> <h6>{{cmt.user.first_name}} {{cmt.user.last_name}}</h6></a>
+                                    <span style="color: white;">{{cmt.date|date:"M d, Y"}}</span>
+                                </div> 
+                                {%if cmt.user == user%}
+                                <a id="cmtdel" name = {{cmt.id}} style="cursor: pointer; color: blue;" >delete</a>
+                                <script>
+                        
+                                $(document).on('click','#cmtdel',function(){
+                                    ele = document.getElementById("cmtdel")
+                                    $.ajax({
+                                            type: "POST",
+                                            url: "{% url 'cmtdel' %}",
+                                            data: {cmtid:  $(this).attr('name'),csrfmiddlewaretoken: '{{ csrf_token }}'},
                                             
-                        
-                                      }
-                        
-                                });
-                        
-                          }) 
-                        </script>
-                            {%endif%}
-                            <p >
+                                            success: function(json) {
+                                                    alert(json['message'])
+                                                    
                                 
-                            {{cmt.content}}
-                            </p>
-                                   
+                                            }
                                 
-                        </div>
+                                        });
+                                
+                                }) 
+                                </script>
+                                {%endif%}
+                                <p >
+                                    
+                                {{cmt.content}}
+                                
+                                    
+                                    
+                            </div>
+                        </p>
                         {%endfor%}
+
                     </div>
+               
                 </div>
             </div>
         </div>

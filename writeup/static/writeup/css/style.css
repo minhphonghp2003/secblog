@@ -1356,6 +1356,7 @@ ol {
   position: relative;
   z-index: 1;
   margin-bottom: 45px;
+  border-radius: 10%;
   /* background: url(../img/blog/blog-2.jpg); */
   opacity: 0.5;
   /* height: 90%; */
