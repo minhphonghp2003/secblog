@@ -238,7 +238,7 @@
                             
                         </div>
                         {%else%}
-                        <h4 class="blog__details__comment">Login to comment</h4>
+                        <h4 class="blog__details__comment"> <a href="{%url 'login'%}"> Login </a>to comment</h4>
                         {%endif%}
                          <script>
                        
@@ -271,7 +271,7 @@
                                     
                                 </div>
                                 <div class="blog__details__option__item__text">
-                                    <a href="{%url 'profile' cmt.user.id%}"> <h6>{{cmt.user.first_name}} {{cmt.user.last_name}}</h6></a>
+                                    <h6></h6><a href="{%url 'profile' cmt.user.id%}"> {{cmt.user.first_name}} {{cmt.user.last_name}}</a></h6>
                                     <span style="color: white;">{{cmt.date|date:"M d, Y"}}</span>
                                 </div> 
                                 {%if cmt.user == user%}
