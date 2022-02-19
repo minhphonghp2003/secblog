@@ -12,6 +12,9 @@
         <!--font-family-->
 		<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&amp;subset=devanagari,latin-ext" rel="stylesheet">
         
+		<link rel="icon" type="image/png" href="{% static 'user/images/icons/favicon.ico'%}"/>
+		
+		 <!-- <link rel="icon" type="image/x-icon" href="{% static 'welcome/favicon.ico'%}"> -->
         <!-- title of site -->
         <title>{{username.first_name.upper}}'s Profile</title>
 
@@ -147,8 +150,8 @@
 										<div class="single-about-add-info">
 											<h3>phone</h3>
 											<p>{{profile.about_phone}}</p>
-											<h3>Level</h3>
-											<p>{{profile.tag| title}}</p>
+											<h3>Role</h3>
+											<p>{{profile.tag| title}} at secblog</p>
 										</div>
 									</div>
 									<div class="col-sm-4">
@@ -544,10 +547,10 @@
 											<h3>email</h3>
 											<p id="p_email">{{profile.about_email}}</p>
 										</div>
-										<div class="single-contact-add-info">
-											<h3>website</h3>
-											<p>www.s3cbl09.com</p>
-										</div>
+										<!-- <div class="single-contact-add-info">
+											<h3>Role</h3>
+											<p>{{profile.tag | title}}</p>
+										</div> -->
 									</div>
 								</div><!--/.contact-adress-->
 								<div class="hm-foot-icon">
