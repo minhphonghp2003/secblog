@@ -8,7 +8,7 @@ class Register(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ['first_name','last_name','username','password1', 'password2']
+        fields = ['username','first_name','last_name','password1', 'password2']
 
 
 class UserUpdate(forms.ModelForm):
