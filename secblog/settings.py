@@ -94,6 +94,12 @@ DATABASES = {
     }
 }
 
+# 'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'minhphonghp2003$default',
+#         'USER': 'minhphonghp2003',
+#         'PASSWORD': 'phongnguyeNdb82',
+#         'HOST': 'minhphonghp2003.mysql.pythonanywhere-services.com',
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
