@@ -206,8 +206,8 @@
                                 {%if post.get_next_by_date_create%}
                                 {%if not post.get_previous_by_date_create%}
                                 <div class="col-lg-6 col-md-6 col-sm-6">
-                                    <a href="{%url 'writeupdetail' post.get_next_by_date_create.id%}" class="blog__details__option__item">
-                                        <h5><i class="fa fa-angle-left"></i> Next posts</h5>
+                                    <a href="{%url 'writeupdetail' post.get_next_by_date_create.id%}" class="blog__details__option__item  blog__details__option__item--right">
+                                        <h5><i class="fa fa-angle-right"></i> Next posts</h5>
                                       
                                         <div class="blog__details__option__item__text">
                                             <h6>{{post.get_next_by_date_create.title}}</h6>
