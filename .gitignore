@@ -2,7 +2,7 @@
 db.sqlite3
 
 *.pyc
-
+setting.py
 *~
 __pycache__
 
