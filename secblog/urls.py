@@ -26,7 +26,7 @@ urlpatterns = [
     path('ckeditor/upload/', login_required(ckeditor_views.upload), name='ckeditor_upload'),
     path('ckeditor/browse/', never_cache(login_required(ckeditor_views.browse)), name='ckeditor_browse'),
 
-    path('admin/', admin.site.urls),
+    path('getthefuckingout/', admin.site.urls),
     path('',include('welcome.welcome_url')),
     path('user/',include('user.user_url')),
     path('dedsec/',include('writeup.writeup_url')),
