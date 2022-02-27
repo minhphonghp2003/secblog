@@ -82,7 +82,7 @@
                         
                         <h2>{{post.title}}</h2>
                         {%if user == post.author%}
-                        <h4 style="color: white;"><a href="{%url 'writeupdelete' post.pk%}"> Delete</a> | <a href="{%url 'writeupupdate' post.pk%}">Edit</a></h4>
+                        <h4 style="color: white;"><a style="color: red;" href="{%url 'writeupdelete' post.pk%}"> Delete</a> | <a href="{%url 'writeupupdate' post.pk%}">Edit</a></h4>
                         {%endif%}
                         <ul>
                              <li><h3 style="color: white;"> by<span> <a  href="{%url 'profile' post.author.id%}">{{post.author.first_name}}</a> </span></h3></li>
@@ -281,7 +281,7 @@
                                 
                                     
                                 {%if cmt.user == user%}
-                                <a id="cmtdel" name = {{cmt.id}} style="cursor: pointer; color: blue;" >delete</a>
+                                <a id="cmtdel" name = {{cmt.id}} style="cursor: pointer; color: red;" >delete</a>
                                 
                                 {%endif%}
                                 <p >
