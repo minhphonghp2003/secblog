@@ -71,8 +71,32 @@
             <div id="mobile-menu-wrap"></div>
         </div>
     </header>
+    
     <!-- Header End -->
-
+    {%if post.cate.first.tag == 'kcsc training' and user != post.author %}
+        <section class="blog-hero spad set-bg" data-setbg="{%static 'writeup/img/team-bg.jpg'%}">
+        <div class="container">
+            <div class="row d-flex justify-content-center">
+                <div class="col-lg-8">
+                    <div class="blog__hero__text">
+                        
+                        <h2>{{post.title}}</h2>
+                        <ul>
+                             <li><h3 style="color: white;"> by<span> <a  href="{%url 'profile' post.author.id%}">{{post.author.first_name}}</a> </span></h3></li>
+                            <li><h4 style="color:aliceblue;">{{post.date_create|date:"M d, Y"}}</h4> </li>
+                            <h3 style="color: blueviolet;">
+                                Sorry, you have no right to see this writeup
+                            </h3>
+                            <!-- <li>05 Comment</li> -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    {%else%}
+    
     <!-- Blog Details Hero Begin -->
     <section class="blog-hero spad set-bg" data-setbg="{%static 'writeup/img/team-bg.jpg'%}">
         <div class="container">
@@ -320,4 +344,6 @@
                                 }) 
                                 </script>
     <!-- Blog Details Section End -->
+
+    {%endif%}
     {% endblock %}
