@@ -143,8 +143,8 @@ ol {
 
 .set-bg {
   background-repeat: no-repeat;
-  background-size: cover;
-  background-position: bottom;
+  /* background-size: contain; */
+  background-position: center;
 }
 
 .spad {
@@ -375,7 +375,7 @@ ol {
 .header__nav__menu ul li a {
   font-size: 15px;
   font-family: "Play", sans-serif;
-  color: #ffffff;
+  color: white;
   display: block;
   text-transform: uppercase;
   position: relative;
@@ -793,9 +793,7 @@ ol {
   
 }
 .blog__item.latest__item:hover {
-  border: 1px solid #222222 !important;
-  background: url(../img/blog/blog-1.jpg);
-  background-size: cover;
+  
 }
 
 .latest__slider.owl-carousel .owl-item .col-lg-4 {
@@ -992,9 +990,7 @@ ol {
 /*---------------------
   Breadcrumb
 -----------------------*/
-.breadcrumb-option {
-  padding-top: 180px;
-}
+
 
 .breadcrumb__text h2 {
   color: #ffffff;
@@ -1353,19 +1349,20 @@ ol {
 }
 
 .blog__item {
-  border: 1px solid #222222;
+  border: 1px solid blueviolet;
   padding: 40px 48px 35px 30px;
   position: relative;
   z-index: 1;
   margin-bottom: 45px;
-  background: url(../img/blog/blog-2.jpg);
-  opacity: 0.7;
+  border-radius: 10%;
+  /* background: url(../img/blog/blog-2.jpg); */
+  opacity: 0.5;
   /* height: 90%; */
 }
 .blog__item:hover {
   border: 1px solid transparent !important;
-  background: url(../img/blog/blog-2.jpg) no-repeat;
-  background-size: cover;
+  /* background: url(../img/blog/blog-2.jpg) no-repeat; */
+  /* background-size: cover; */
   opacity: 100%;
   
 }
@@ -1792,7 +1789,7 @@ ol {
 /*--------------------------------- Responsive Media Quaries -----------------------------*/
 @media only screen and (min-width: 1200px) {
   .container {
-    max-width: 1170px;
+    max-width: 80%;
   }
 }
 /* Medium Device = 1200px */
