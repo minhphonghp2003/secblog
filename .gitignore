@@ -6,3 +6,4 @@ secblog/settings.py
 *~
 __pycache__
 
+/static
