@@ -16,7 +16,11 @@ class Cate(models.Model):
         return self.tag
 
 class Writeup(models.Model):
-    
+    PRIVACY=[
+        ('Public', 'Public'),
+        ('Private', 'Private'),
+    ]
+
     like = models.ManyToManyField(User,related_name='like',null=True,blank=True)
     title = models.TextField()
     prerequis =  RichTextUploadingField(blank=True, null=True)
@@ -24,7 +28,7 @@ class Writeup(models.Model):
     cate = models.ManyToManyField(Cate, related_name='writeup')
     date_create = models.DateTimeField(default = timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE,related_name='writeup')
-
+    privacy  =models.CharField(max_length=10,choices=PRIVACY, default='Public')
 
 
     def __str__(self):
