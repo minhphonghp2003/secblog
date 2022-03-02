@@ -97,10 +97,10 @@
             <div class="row">
                 {%for c in cont%}
              
-                <div  class="col-lg-4 col-md-6 col-sm-6">
+                <div style="max-width: fit-content;" class="col-lg-4 col-md-6 col-sm-6">
                     <a href="{%url 'profile' c.user.id%}"> 
-                    <div style="background:url({{c.image.url}});background-repeat: no-repeat;width: fit-content;" class="blog__item">
-                        <h4>  {{c.user}}</h4>
+                    <div style="background:url({{c.image.url}});background-repeat: no-repeat;" class="blog__item">
+                        <h4>  {{c.user.first_name}} {{c.user.last_name}}</h4>
                         <br>
                         
                     </div>
