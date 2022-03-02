@@ -133,7 +133,7 @@
                             <span>Our Work</span>
                             <h2>What We do?</h2>
                         </div>
-                        <p>We create ctf and challenge writeup here. You can find a specific writeup or create a new one for 
+                        <p>We have ctf and challenge writeup here. You can find a specific writeup or create a new one on 
                             your own.
                         </p>
                         <a href="{%url 'writeup'%}" class="primary-btn">View all writeups</a>
@@ -320,7 +320,7 @@
                             </ul>
                             <!-- <p>We recently launched a new website for a Vital client and wanted to share some of the
                                 cool features we were able...</p> -->
-                            <a href="{%url 'profile' w.author.id%}">{{w.author}} </a>
+                            <a href="{%url 'profile' w.author.id%}">{{w.author.first_name}} </a>
                         </div>
                     </div>
                     {%endif%}
