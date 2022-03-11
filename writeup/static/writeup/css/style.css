@@ -30,7 +30,7 @@
 html,
 body {
   height: 100%;
-  font-family: "Josefin Sans", sans-serif;
+  font-family: 'Noto Serif Display', serif;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -43,7 +43,7 @@ h6 {
   margin: 0;
   color: white;
   font-weight: 400;
-  font-family: "Play", sans-serif;
+  font-family: 'Noto Serif Display', serif;
 }
 
 h1 {
@@ -127,6 +127,7 @@ ol {
 .section-title h2 {
   color: #ffffff;
   font-weight: 700;
+  font-family: 'Noto Serif Display', serif;
   text-transform: uppercase;
   position: relative;
   padding-bottom: 25px;
@@ -496,6 +497,7 @@ ol {
   transition: all, 0.3s;
 }
 .hero__text h2 {
+  font-family: 'Noto Serif Display', serif;
   color: white;
   font-size: 60px;
   font-weight: 700;
@@ -902,6 +904,7 @@ ol {
 }
 .footer__option__item h5 {
   color: #ffffff;
+  font-family: 'Noto Serif Display', serif;
   font-weight: 700;
   margin-bottom: 35px;
 }
@@ -1373,6 +1376,7 @@ ol {
   color: #ffffff;
 }
 .blog__item h4 {
+  font-family: 'Noto Serif Display', serif;
   color: #ffffff;
   font-weight: 700;
   line-height: 31px;
@@ -1386,6 +1390,7 @@ ol {
   list-style: none;
   font-size: 14px;
   font-weight: 300;
+  font-family: 'Noto Serif Display', serif;
   margin-right: 25px;
   position: relative;
   display: inline-block;
@@ -1431,6 +1436,7 @@ ol {
   text-align: center;
 }
 .blog__hero__text h2 {
+  font-family: 'Noto Serif Display', serif;
   color: #ffffff;
   font-weight: 700;
   line-height: 47px;
@@ -1473,7 +1479,8 @@ ol {
   margin-bottom: 30px;
 }
 .blog__details__text p {
-  font-size: 18px;
+  font-family: 'Noto Serif Display', serif;
+  font-size: 20px;
   line-height: 29px;
   font-weight: 300;
   margin-bottom: 20px;
