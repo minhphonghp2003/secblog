@@ -1,4 +1,4 @@
-from django.shortcuts import render,get_object_or_404
+from django.shortcuts import render,get_object_or_404, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from .form import *
@@ -119,22 +119,40 @@ class Contrib(ListView):
 
 
 def Search(request):
-    if request.method == "POST":
-        search = request.POST.get('search')
+    if request.method == "POST" :
+        search = request.POST.get('search')        
+        userf_n = []
+        writeup = []
+        cate = []
+        context_in_wu = []
+        substr = ""
         
-        
-        userf_n = User.objects.filter(first_name = search).first()
-        
-        writeup = Writeup.objects.filter(title=search)
-        cate = Cate.objects.filter(tag = search)
-        
+
+        for u in User.objects.all():
+            if search in u.first_name or search in u.last_name or search in u.username :
+                userf_n.append(User.objects.filter(username = u.username).first())
+        for w in Writeup.objects.all():
+            if search in w.title :     
+                writeup.append( Writeup.objects.filter(title=w.title).first())
+            if w.content_upload and search in w.content_upload:
+                context_in_wu.append(Writeup.objects.filter(title = w.title).first())
+                substr = w.content_upload[w.content_upload.index(search)+ len(search):w.content_upload.index(search) + len(search)+30]
+        for c in Cate.objects.all():
+            if search in c.tag:
+                cate.append( Cate.objects.filter(tag = c.tag).first())
+
         data = {
             'usrfn': userf_n,
-            'search':search,
+            'search': search,
             'writeup': writeup,
             'cate' : cate,
+            'context' : context_in_wu,
+            'substr': substr,
         }
         return render(request,'writeup/search.html',data)
+
+    
+    
 
         
 

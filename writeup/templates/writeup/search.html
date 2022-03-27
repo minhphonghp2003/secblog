@@ -93,23 +93,23 @@
     <!-- Breadcrumb End -->
 
     <!-- Blog Section Begin -->
+    {%if search%}
     <section class="blog spad">
         <div class="container">
             <div class="row">
-                {%if usrfn %}
+                {%if usrfn%}
                 
-                
+                {%for p in usrfn%}
                 <div class="col-lg-4 col-md-6 col-sm-6">
-                    <a href="{%url 'profile' usrfn.id%}">
+                    <a href="{%url 'profile' p.id%}">
                     <div class="blog__item">
-                        <h4> User: {{usrfn.first_name}}</h4>
+                        <h4> User: {{p.first_name}} {{p.last_name}} ({{p.username}})</h4>
                         <br>
                         
                     </div>
                     </a>
                 </div>
-                
-               
+                {%endfor%}
                 {%endif%}
                 
                 {%if writeup%}
@@ -144,6 +144,22 @@
                 {%endfor%}
                 {%endif%}
 
+                {%if context%}
+                {%for p in context%}
+                
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <a href="{%url 'writeupdetail' p.id %}">
+                    <div class="blog__item">
+                        <h4> Writeup: {{p.title}}</h4>
+                        <p> <span style="color: yellow;">{{search}}</span>{{substr}}</p>
+                        <br>
+                        
+                    </div>
+                    </a>
+                </div>
+                
+                {%endfor%}
+                {%endif%}
             </div>
 
             {%if is_paginated%}
@@ -180,4 +196,13 @@
     </section>
     <!-- Blog Section End -->
 
+    
+    {%endif%}
+     <section class="blog spad">
+        <div class="container">
+            <div class="row">
+                
+            </div>
+        </div>
+     </section>
 {% endblock %}
