@@ -145,13 +145,13 @@
                 {%endif%}
 
                 {%if context%}
-                {%for p in context%}
+                {%for key, value in context.items%}
                 
                 <div class="col-lg-4 col-md-6 col-sm-6">
-                    <a href="{%url 'writeupdetail' p.id %}">
+                    <a href="{%url 'writeupdetail' key.id %}">
                     <div class="blog__item">
-                        <h4> Writeup: {{p.title}}</h4>
-                        <p> <span style="color: yellow;">{{search}}</span>{{substr}}</p>
+                        <h4> Writeup: {{key.title}}</h4>
+                        <p> <span style="color: yellow;">{{search}}</span>{{value}}</p>
                         <br>
                         
                     </div>
@@ -160,6 +160,7 @@
                 
                 {%endfor%}
                 {%endif%}
+                
             </div>
 
             {%if is_paginated%}

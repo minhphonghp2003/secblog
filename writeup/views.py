@@ -124,8 +124,8 @@ def Search(request):
         userf_n = []
         writeup = []
         cate = []
-        context_in_wu = []
-        substr = ""
+        context_in_wu = {}
+
         
 
         for u in User.objects.all():
@@ -135,8 +135,7 @@ def Search(request):
             if search in w.title :     
                 writeup.append( Writeup.objects.filter(title=w.title).first())
             if w.content_upload and search in w.content_upload:
-                context_in_wu.append(Writeup.objects.filter(title = w.title).first())
-                substr = w.content_upload[w.content_upload.index(search)+ len(search):w.content_upload.index(search) + len(search)+30]
+                context_in_wu.update({w:( w.content_upload[w.content_upload.index(search)+ len(search):w.content_upload.index(search) + len(search)+30])})
         for c in Cate.objects.all():
             if search in c.tag:
                 cate.append( Cate.objects.filter(tag = c.tag).first())
@@ -147,7 +146,6 @@ def Search(request):
             'writeup': writeup,
             'cate' : cate,
             'context' : context_in_wu,
-            'substr': substr,
         }
         return render(request,'writeup/search.html',data)
 
